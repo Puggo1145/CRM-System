@@ -1,0 +1,16 @@
+.dashboard-wrapper {
+  display: flex;
+}
+.dashboard-wrapper .dashboardContent-wrapper {
+  overflow-y: scroll;
+  width: calc(100% - 120px);
+  height: 100vh;
+  padding: 24px;
+}
+.board-component {
+  background-color: #fff;
+  border: 1px solid #E3E4E6;
+  border-radius: 4px;
+  padding-bottom: 0;
+  padding: 16px;
+}
