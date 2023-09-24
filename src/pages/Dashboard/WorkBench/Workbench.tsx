@@ -3,6 +3,7 @@ import { useState } from 'react'
 import TopEmployer from './TopEmployer/TopEmployer';
 import WorkTrend from './WorkTrend/WorkTrend';
 import MyCustomer from './MyCustomer/MyCustomer';
+import TaskToday from './TaskToday/TaskToday';
 
 import './Workbench.css'
 
@@ -70,6 +71,7 @@ export default function Workbench() {
         <TopEmployer />
         <WorkTrend />
         <MyCustomer />
+        <TaskToday />
       </div>
     </div>
   )

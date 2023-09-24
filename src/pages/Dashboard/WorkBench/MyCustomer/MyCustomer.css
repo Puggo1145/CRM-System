@@ -3,15 +3,8 @@
   height: 429px;
   padding: 16px 0;
 }
-.myCustomer-wrapper header {
-  padding: 0 16px;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 16px;
-}
 .myCustomer-wrapper header h3 {
-  font-size: 14px;
-  font-weight: 400;
+  padding-left: 16px;
 }
 .myCustomer-wrapper .myCustomer-filter {
   padding: 0 16px;

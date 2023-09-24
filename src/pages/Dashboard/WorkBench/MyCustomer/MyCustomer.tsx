@@ -66,7 +66,7 @@ export default function MyCustomer() {
                     <span>状态</span>
                     <span>创建时间</span>
                 </li>
-                <li className='myCustomer-lists-content'>
+                <div className='myCustomer-lists-content'>
                     {
                         customerData.map(item => {
                             return (
@@ -80,7 +80,7 @@ export default function MyCustomer() {
                             )
                         })
                     }
-                </li>
+                </div>
             </ul>
         </div>
     )

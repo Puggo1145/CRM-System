@@ -14,3 +14,12 @@
   padding-bottom: 0;
   padding: 16px;
 }
+.board-component header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.board-component header h3 {
+  font-size: 14px;
+  font-weight: 400;
+}

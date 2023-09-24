@@ -1,0 +1,34 @@
+.taskToday-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 429px;
+    grid-column: 3 / 5;
+    padding: 16px 0;
+    padding-bottom: 0;
+
+    header {
+        padding: 0 16px;
+        height: 28px;
+    }
+    
+    .taskToday-btns {
+        button {
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #fff;
+            background-color: #9a9a9a;
+            transition: all 0.3s;
+
+            &:hover {
+                filter: brightness(1.2);
+            }
+        }
+
+        .taskToday-createTask {
+            background-color: #3963eb;
+            margin-right: 8px;
+        }
+    }
+}

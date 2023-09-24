@@ -1,0 +1,41 @@
+.boardList {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.boardList .boardList-headerRow {
+  padding: 0 16px;
+  height: 40px;
+  line-height: 40px;
+  color: #9A9A9A;
+  border-bottom: 1px solid #DDD;
+  border-top: 1px solid #DDD;
+  font-size: 12px;
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+}
+.boardList .boardList-headerRow span {
+  width: 80px;
+}
+.boardList .boardList-content {
+  flex: 1;
+  overflow-y: scroll;
+}
+.boardList .boardList-content-item {
+  padding: 12px 16px;
+  font-size: 14px;
+  border-bottom: 1px solid #DDD;
+  display: flex;
+  justify-content: space-between;
+}
+.boardList .boardList-content-item span {
+  width: 80px;
+}
+.boardList .boardList-content-item span:first-child {
+  font-weight: 700;
+}
+.boardList .boardList-content-item:nth-child(even) {
+  background-color: #F0F0F0;
+}
