@@ -33,3 +33,14 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background-color: rgba(144, 147, 153, 0.3);
 }
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  background-image: url(static/common/select-icon.png);
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-position: right 8px center;
+  padding: 0 8px;
+}

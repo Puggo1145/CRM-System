@@ -1,0 +1,21 @@
+.quickCheck-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 392px;
+  padding: 0;
+  padding-top: 16px;
+}
+.quickCheck-wrapper header {
+  height: 18px;
+}
+.quickCheck-wrapper header span h3 {
+  margin-left: 16px;
+}
+.quickCheck-wrapper .boardList-content-item {
+  cursor: pointer;
+  height: 56px;
+  line-height: 32px;
+}
+.quickCheck-wrapper .boardList-content-item:hover {
+  background-color: #F5F5F5;
+}

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import TopEmployer from './TopEmployer/TopEmployer';
+import Topemployee from './TopEmployee/TopEmployee';
 import WorkTrend from './WorkTrend/WorkTrend';
 import MyCustomer from './MyCustomer/MyCustomer';
 import TaskToday from './TaskToday/TaskToday';
@@ -68,7 +68,7 @@ export default function Workbench() {
             )
           })
         }
-        <TopEmployer />
+        <Topemployee />
         <WorkTrend />
         <MyCustomer />
         <TaskToday />

@@ -3,9 +3,10 @@ import { useState } from 'react'
 import './MyCustomer.css'
 
 interface customerDataType {
+    _id: string;
     student: string;
     teacher: string;
-    employer: string;
+    employee: string;
     status: string;
     createdAt: string;
 }
@@ -13,14 +14,14 @@ interface customerDataType {
 export default function MyCustomer() {
 
     const [customerData, setCustomerData] = useState<customerDataType[]>([
-        { student: '学生A', teacher: '班主任A', employer: '员工A', status: '对接成功', createdAt: '2021-09-22' },
-        { student: '学生B', teacher: '班主任B', employer: '员工B', status: '对接失败', createdAt: '2021-09-22' },
-        { student: '学生C', teacher: '班主任C', employer: '员工C', status: '对接成功', createdAt: '2021-09-22' },
-        { student: '学生D', teacher: '班主任D', employer: '员工D', status: '对接失败', createdAt: '2021-09-22' },
-        { student: '学生E', teacher: '班主任E', employer: '员工E', status: '对接成功', createdAt: '2021-09-22' },
-        { student: '学生F', teacher: '班主任F', employer: '员工F', status: '对接失败', createdAt: '2021-09-22' },
-        { student: '学生G', teacher: '班主任G', employer: '员工G', status: '对接成功', createdAt: '2021-09-22' },
-        { student: '学生H', teacher: '班主任H', employer: '员工H', status: '对接失败', createdAt: '2021-09-22' },
+        { _id: '1', student: '学生A', teacher: '班主任A', employee: '员工A', status: '对接成功', createdAt: '2021-09-22' },
+        { _id: '2', student: '学生B', teacher: '班主任B', employee: '员工B', status: '对接失败', createdAt: '2021-09-22' },
+        { _id: '3', student: '学生C', teacher: '班主任C', employee: '员工C', status: '对接成功', createdAt: '2021-09-22' },
+        { _id: '4', student: '学生D', teacher: '班主任D', employee: '员工D', status: '对接失败', createdAt: '2021-09-22' },
+        { _id: '5', student: '学生E', teacher: '班主任E', employee: '员工E', status: '对接成功', createdAt: '2021-09-22' },
+        { _id: '6', student: '学生F', teacher: '班主任F', employee: '员工F', status: '对接失败', createdAt: '2021-09-22' },
+        { _id: '7', student: '学生G', teacher: '班主任G', employee: '员工G', status: '对接成功', createdAt: '2021-09-22' },
+        { _id: '8', student: '学生H', teacher: '班主任H', employee: '员工H', status: '对接失败', createdAt: '2021-09-22' },
     ])
 
     return (
@@ -43,10 +44,10 @@ export default function MyCustomer() {
                 </span>
                 <span className='myCustomer-filter-item'>
                     <h6>按对接员工筛选</h6>
-                    <select name="filter-employer">
+                    <select name="filter-employee">
                         <option value="all">全部</option>
-                        <option value="employer1">员工A</option>
-                        <option value="employer2">员工B</option>
+                        <option value="employee1">员工A</option>
+                        <option value="employee2">员工B</option>
                     </select>
                 </span>
                 <span className='myCustomer-filter-item'>
@@ -73,7 +74,7 @@ export default function MyCustomer() {
                                 <li key={item.student} className='myCustomer-lists-item'>
                                     <span className='myCustomer-lists-item-student'>{item.student}</span>
                                     <span className='myCustomer-lists-item-teacher'>{item.teacher}</span>
-                                    <span className='myCustomer-lists-item-employer'>{item.employer}</span>
+                                    <span className='myCustomer-lists-item-employee'>{item.employee}</span>
                                     <span className='myCustomer-lists-item-status'>{item.status}</span>
                                     <span className='myCustomer-lists-item-createdAt'>{item.createdAt}</span>
                                 </li>

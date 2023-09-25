@@ -1,16 +1,16 @@
 import { useState } from 'react'
 
-import './TopEmployer.css'
+import './Topemployee.css'
 
-interface TopEmployerDataType {
+interface TopemployeeDataType {
     rank: number;
     name: string;
     performance: number;
 }
 
-export default function TopEmployer() {
+export default function Topemployee() {
 
-    const [TopEmployers, setTopEmployers] = useState<TopEmployerDataType[]>([
+    const [Topemployees, setTopemployees] = useState<TopemployeeDataType[]>([
         {rank: 1, name: '张三', performance: 24},
         {rank: 2, name: '李四', performance: 20},
         {rank: 3, name: '王五', performance: 17},
@@ -37,7 +37,7 @@ export default function TopEmployer() {
                 </section>
                 <ul className='topEm-list-content'>
                     {
-                        TopEmployers.map(item => {
+                        Topemployees.map(item => {
                             return (
                                 <li key={item.rank} className='topEm-list-content-item'>
                                     <span className='topEm-list-content-item-rank'>{item.rank}</span>

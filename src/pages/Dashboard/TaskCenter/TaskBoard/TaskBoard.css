@@ -1,0 +1,92 @@
+.taskBoard-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  height: 100%;
+}
+.taskBoard-wrapper header {
+  padding: 0 16px;
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+}
+.taskBoard-wrapper header h3 {
+  margin-bottom: 16px;
+}
+.taskBoard-wrapper header .taskBoard-function {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.taskBoard-wrapper header .taskBoard-function button {
+  cursor: pointer;
+  width: 76px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 9px 14px;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+.taskBoard-wrapper header .taskBoard-function button:hover {
+  filter: brightness(1.1);
+}
+.taskBoard-wrapper header .taskBoard-function .taskBoard-function-createFn {
+  background-color: #3963eb;
+  color: #fff;
+}
+.taskBoard-wrapper header .taskBoard-function .taskBoard-function-filters {
+  display: flex;
+}
+.taskBoard-wrapper header .taskBoard-function .taskBoard-function-filters .taskBoard-function-duration {
+  cursor: pointer;
+  width: 106px;
+  height: 34px;
+  border-radius: 4px;
+  border: 1px solid #D9D9D9;
+  margin-right: 8px;
+}
+.taskBoard-wrapper header .taskBoard-function .taskBoard-function-filters .taskBoard-function-query {
+  display: flex;
+  align-items: center;
+  width: 386px;
+  border: 1px solid #D9D9D9;
+  border-radius: 4px;
+  padding: 4px;
+  background-image: url(../../../../static/dashboard/search.png);
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px;
+}
+.taskBoard-wrapper header .taskBoard-function .taskBoard-function-filters .taskBoard-function-query select {
+  padding-right: 16px;
+  height: 100%;
+  background-color: #e3e4e6;
+  border-radius: 4px;
+  margin-right: 8px;
+  color: #333;
+  background-image: url(../../../../static/common/select-icon-dark.png);
+  background-position: right 8px center;
+}
+.taskBoard-wrapper header .taskBoard-function .taskBoard-function-filters .taskBoard-function-query input {
+  flex: 0.9;
+  background-color: rgba(0, 0, 0, 0);
+}
+.taskBoard-wrapper header .taskBoard-function .taskBoard-function-filters .taskBoard-function-query .queryFor-desc {
+  width: 12px;
+  height: 12px;
+  border-radius: 8px;
+  background-color: #cccccc;
+  background-image: url(../../../../static/dashboard/help.png);
+  background-repeat: no-repeat;
+  background-position: top -0.5px left -0.5px;
+  background-size: 12px;
+}
+.taskBoard-wrapper .boardList-content li {
+  cursor: pointer;
+  height: 56px;
+  line-height: 32px;
+  background-color: #fff;
+}
+.taskBoard-wrapper .boardList-content li:hover {
+  background-color: #f5f5f5;
+}

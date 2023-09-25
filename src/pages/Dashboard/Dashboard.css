@@ -7,6 +7,12 @@
   height: 100vh;
   padding: 24px;
 }
+.dashboard-wrapper .dashboardContent-wrapper header {
+  margin-bottom: 16px;
+}
+.dashboard-wrapper .dashboardContent-wrapper header h2 {
+  font-size: 24px;
+}
 .board-component {
   background-color: #fff;
   border: 1px solid #E3E4E6;
