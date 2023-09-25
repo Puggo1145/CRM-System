@@ -1,25 +1,21 @@
 .taskCenter-wrapper {
+  min-height: 634px;
   height: 100%;
-  display: flex;
-  flex-direction: column;
 }
-.taskCenter-wrapper header {
-  height: 24px;
+.taskCenter-wrapper .taskCenter-header {
+  height: 33.5px;
 }
 .taskCenter-content {
   display: flex;
-  flex: 1;
   gap: 16px;
-  height: 100%;
+  height: calc(100% - 49.5px);
 }
 .taskCenter-content .taskCenter-content-left {
   flex: 1;
-  height: 100%;
 }
 .taskCenter-content .taskCenter-content-right {
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 308px;
-  height: 100%;
 }

@@ -24,7 +24,7 @@ export default function QuickCheck() {
 
   return (
     <div className="quickCheck-wrapper board-component">
-      <header>
+      <header className="quickCheck-header">
         <span><h3>快速审核</h3></span>
       </header>
       <BoardList keys={keys} data={data} />

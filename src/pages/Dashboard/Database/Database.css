@@ -1,0 +1,104 @@
+.database-wrapper {
+  height: 100%;
+}
+.database-wrapper .database-content {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  padding-top: 16px;
+}
+.database-wrapper .database-content header {
+  padding: 0 16px;
+}
+.database-wrapper .database-content .database-content-functions {
+  padding: 0 16px;
+  height: 34px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.database-wrapper .database-content .database-content-functions .database-content-filter select {
+  width: 120px;
+  height: 100%;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  margin-right: 16px;
+}
+.database-wrapper .database-content .database-content-functions .database-content-filter input {
+  width: 220px;
+  height: 100%;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  padding: 8px;
+  background-image: url(../../../static/dashboard/search.png);
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-position: right 8px center;
+}
+.database-wrapper .database-content .database-content-functions .database-content-crud button {
+  cursor: pointer;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 4px;
+  background-color: #4362e3;
+  color: #fff;
+}
+.database-wrapper .database-content .database-content-functions .database-content-crud button:hover {
+  filter: brightness(1.1);
+}
+.database-wrapper .database-content .spacer {
+  width: 100%;
+  border-top: 1px solid #ddd;
+}
+.database-wrapper .database-content .database-content-data {
+  width: 100%;
+  border-radius: 4px;
+}
+.database-wrapper .database-content .database-content-data .database-content-data-school {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 16px;
+  padding-right: 0;
+  border-bottom: 1px solid #ddd;
+}
+.database-wrapper .database-content .database-content-data .database-content-data-school .database-content-data-school_name {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+.database-wrapper .database-content .database-content-data .database-content-data-school .database-content-data-school_info {
+  display: flex;
+  gap: 32px;
+}
+.database-wrapper .database-content .database-content-data .database-content-data-school .database-content-data-school_info li {
+  display: flex;
+  flex-direction: column;
+}
+.database-wrapper .database-content .database-content-data .database-content-data-school .database-content-data-school_info li span:first-child {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 4px;
+}
+.database-wrapper .database-content .database-content-data .database-content-data-school .database-content-data-school_info li span:last-child {
+  font-size: 14px;
+  color: #333;
+}
+.database-wrapper .database-content .database-content-data .database-content-data-school:hover {
+  background-color: #f5f5f5;
+}
+.database-wrapper .database-content .database-content-data .database-content-data-school .database-content-data-teachers {
+  display: flex;
+  margin-top: 16px;
+  border-top: 1px solid #ddd;
+  padding: 16px 0 0 0;
+}
+.database-wrapper .database-content .database-content-data .database-content-data-school .database-content-data-teachers .database-content-data-teacher {
+  width: 100%;
+}
+.database-wrapper .database-content .database-content-data .database-content-data-school .database-content-data-teachers .database-content-data-teacher .database-content-data-teacher_name {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+.database-wrapper .database-content .database-content-data .database-content-data-school .database-content-data-teachers .database-content-data-teacher:hover {
+  background-color: #c5c5c5;
+}

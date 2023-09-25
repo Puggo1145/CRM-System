@@ -45,7 +45,7 @@ export default function TaskBoard() {
 
   return (
     <div className="taskBoard-wrapper board-component">
-      <header>
+      <header className='taskBoard-header'>
         <h3>任务板</h3>
         <section className="taskBoard-function">
           <button className="taskBoard-function-createFn">创建任务</button>
