@@ -38,9 +38,7 @@ export default function TaskCenter() {
       </div>
 
       <section className='taskCenter-components'>
-        {
-          isCreateTaskOpen && <CreateTask />
-        }
+          <CreateTask />
       </section>
     </div>
   )

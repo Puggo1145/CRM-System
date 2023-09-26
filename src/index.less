@@ -9,10 +9,11 @@
 }
 
 body {
+    overflow-x: hidden;
     background-color: #f7f9fa;
 }
 
-// 美化滚动条
+// 滚动条样式
 ::-webkit-scrollbar {
     width: 4px;
 }
@@ -40,6 +41,7 @@ body {
     background-color: rgba(144, 147, 153, .3);
 }
 
+// select 样式
 select {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -50,4 +52,8 @@ select {
     background-size: 16px;
     background-position: right 8px center;
     padding: 0 8px;
+}
+
+option {
+    color: #000;
 }

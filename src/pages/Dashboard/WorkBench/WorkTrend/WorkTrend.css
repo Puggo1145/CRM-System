@@ -10,10 +10,6 @@
   font-size: 14px;
   font-weight: 400;
 }
-.workTrend-wrapper header select {
-  color: #3963EB;
-  font-size: 12px;
-}
 .workTrend-wrapper .workTrend-data {
   display: flex;
   margin-top: 16px;

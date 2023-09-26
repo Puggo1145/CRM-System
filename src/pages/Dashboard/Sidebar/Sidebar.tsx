@@ -30,7 +30,7 @@ export default function Sidebar() {
 
     const [links, setLinks] = useState<Link[]>([
         {name: '工作台', path: '/dashboard/workbench', icon: [workbenchIcon, workbenchActivateIcon], active: true},
-        {name: '任务中心', path: '/dashboard/taskCenter', icon: [taskCenterIcon, taskCenterActivateIcon], active: false},
+        {name: '任务中心', path: '/dashboard/taskcenter', icon: [taskCenterIcon, taskCenterActivateIcon], active: false},
         {name: '数据库', path: '/dashboard/database', icon: [databaseIcon, databaseActivateIcon], active: false},
     ]);
     const [isUserSettingShow, setIsUserSettingShow] = useState<boolean>(false);
@@ -45,9 +45,10 @@ export default function Sidebar() {
         setLinks(newLinks);
     };
 
+    // 根据 url 同步 sidebar 的 active 状态
     useEffect(() => {
         handleLinkClick(location.pathname);
-    }, [])
+    }, [location.pathname])
 
     const handleExitLogin = () => {
         // 1. 清除 user 信息

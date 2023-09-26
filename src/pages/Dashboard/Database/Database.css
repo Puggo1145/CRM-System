@@ -36,15 +36,8 @@
   background-position: right 8px center;
 }
 .database-wrapper .database-content .database-content-functions .database-content-crud button {
-  cursor: pointer;
   height: 34px;
   padding: 0 12px;
-  border-radius: 4px;
-  background-color: #4362e3;
-  color: #fff;
-}
-.database-wrapper .database-content .database-content-functions .database-content-crud button:hover {
-  filter: brightness(1.1);
 }
 .database-wrapper .database-content .spacer {
   width: 100%;

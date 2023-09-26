@@ -1,5 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import PubSub from 'pubsub-js'
 
+// components
+import BackgroundMask from '../../../../components/BackgroundMask/BackgroundMask'
+
+// stores
 import useEmployee from '../../../../store/employee'
 
 // utils
@@ -9,6 +14,18 @@ import './CreateTask.css'
 
 export default function CreateTask() {
 
+    const [isCreateTaskOpen, setIsCreateTaskOpen] = useState<boolean>(false)
+
+    useEffect(() => {
+      const token = PubSub.subscribe('createTask', () => {
+        setIsCreateTaskOpen(!isCreateTaskOpen)
+      });
+  
+      return () => {
+        PubSub.unsubscribe(token)
+      }
+    }, [isCreateTaskOpen])
+
     // 选择员工
     const employee = useEmployee(state => state.employeeInfo)
 
@@ -17,7 +34,7 @@ export default function CreateTask() {
 
     return (
         <>
-            <div className='createTask-wrapper'>
+            <div className={isCreateTaskOpen ? 'createTask-wrapper taskOpen' : 'createTask-wrapper'}>
                 <header>
                     <h3>创建任务</h3>
                     <button className='createTask-close' onClick={() => handleComponentOpen('createTask')}></button>
@@ -66,7 +83,8 @@ export default function CreateTask() {
                     <button className='createTask-confirm btn-blue'>创建</button>
                 </footer>
             </div>
-            <div className='background-mask' onClick={() => handleComponentOpen('createTask')}></div>
+            <BackgroundMask onClick={() => handleComponentOpen('createTask')} state={isCreateTaskOpen}/>
+            {/* <div className='background-mask' onClick={() => handleComponentOpen('createTask')} style={{}}></div> */}
         </>
     )
 }

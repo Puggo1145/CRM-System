@@ -27,6 +27,7 @@
     }
 
     .boardList-content-item {
+        position: relative;
         padding: 12px 16px;
         font-size: 14px;
         border-bottom: 1px solid #DDD;
@@ -43,6 +44,16 @@
 
         &:nth-child(even) {
             background-color: #F0F0F0;
+        }
+
+        &:hover::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            border-left: 4px solid #4362e3;
         }
     }
 }

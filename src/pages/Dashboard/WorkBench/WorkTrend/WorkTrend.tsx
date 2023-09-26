@@ -19,7 +19,7 @@ export default function WorkTrend() {
         <div className="workTrend-wrapper board-component">
             <header>
                 <h3>工作趋势</h3>
-                <select name="duration">
+                <select name="duration"  className='duration'>
                     <option value="day">今日</option>
                     <option value="week">本周</option>
                     <option value="month">本月</option>

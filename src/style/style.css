@@ -9,6 +9,7 @@
     color: #fff;
     letter-spacing: 1px;
     background-color: #4362e2;
+    transition: all 0.3s;
 
     &:hover {
         filter: brightness(1.1);
@@ -32,8 +33,15 @@
     width: 100vw;
     height: 100vh;
     background-color: #000;
+    transition: all 0.3s;
 }
 
 .timePicker {
     color: #9A9A9A;
+}
+
+.duration {
+    width: 56px;
+    color: #3963EB;
+    font-size: 12px;
 }

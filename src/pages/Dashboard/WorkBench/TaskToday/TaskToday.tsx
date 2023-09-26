@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 import './TaskToday.css'
 
@@ -30,8 +31,7 @@ export default function TaskToday() {
             <header>
                 <h3>今日任务</h3>
                 <span className='taskToday-btns'>
-                    <button className='taskToday-createTask'>+ 创建任务</button>
-                    <button className='taskToday-moreInfo'>查看详情</button>
+                    <Link className='btn-blue' to={"/dashboard/taskcenter"}>查看详情</Link>
                 </span>
             </header>
             <BoardList keys={ dataKeys } data={ taskToday } />

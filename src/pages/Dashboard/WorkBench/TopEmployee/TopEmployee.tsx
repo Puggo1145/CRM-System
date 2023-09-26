@@ -23,7 +23,7 @@ export default function Topemployee() {
         <div className="topEm-wrapper">
             <header>
                 <h3>Top 员工业绩</h3>
-                <select name="duration">
+                <select name="duration" className='duration'>
                     <option value="day">今日</option>
                     <option value="week">本周</option>
                     <option value="month">本月</option>

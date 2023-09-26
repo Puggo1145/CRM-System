@@ -8,6 +8,7 @@
   outline: none;
 }
 body {
+  overflow-x: hidden;
   background-color: #f7f9fa;
 }
 ::-webkit-scrollbar {
@@ -43,4 +44,7 @@ select {
   background-size: 16px;
   background-position: right 8px center;
   padding: 0 8px;
+}
+option {
+  color: #000;
 }

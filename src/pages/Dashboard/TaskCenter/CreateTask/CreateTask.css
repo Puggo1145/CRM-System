@@ -1,8 +1,11 @@
+.taskOpen {
+  right: 0vw!important;
+}
 .createTask-wrapper {
   z-index: 1;
   position: absolute;
   top: 0;
-  right: 0;
+  right: -30vw;
   border: 1px solid #ddd;
   background-color: #fff;
   padding: 16px 0;
@@ -11,6 +14,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  transition: all 0.3s ease;
 }
 .createTask-wrapper header {
   padding: 0 16px;

@@ -174,7 +174,7 @@ export default function Database() {
             <input type="text" name='database-filter-query' placeholder='请输入要查询的内容' />
           </section>
           <section className='database-content-crud'>
-            <button className='database-content-create'>导入数据</button>
+            <button className='database-content-create btn-blue'>导入数据</button>
           </section>
         </section>
         <div className='spacer'></div>
