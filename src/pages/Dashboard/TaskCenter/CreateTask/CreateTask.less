@@ -1,0 +1,79 @@
+.createTask-wrapper {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    padding: 16px 0;
+    min-width: 300px;
+    width: 30vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    header {
+        padding: 0 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h3 {
+            font-size: 16px;
+        }
+
+        button {
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+            background-image: url(../../../../static/common/close-icon.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            background-color: #fff;
+        }
+    }
+
+    main {
+        padding: 16px;
+        padding-top: 0;
+        overflow-y: scroll;
+        height: calc(100vh - 100px);
+
+        form {
+            section {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 16px;
+
+                label {
+                    font-size: 14px;
+                    margin-bottom: 8px;
+                }
+
+                textarea {
+                    height: 80px;
+                    margin-bottom: 16px;
+                }
+
+                .createTask-taskContent {
+                    height: 400px;
+                }
+            }
+        }
+    }
+
+    footer {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        border-top: 1px solid #ddd;
+        background-color: #fff;
+        padding: 16px;
+
+        .createTask-confirm {
+            float: right;
+        }
+    }
+}

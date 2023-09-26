@@ -1,6 +1,9 @@
 import { useState } from 'react'
 
-import BoardList from '../../../../components/BoardList'
+import BoardList from '../../../../components/BoardList/BoardList'
+
+// utils
+import { handleComponentOpen } from '../../../../utils/handleComponentOpen'
 
 import './TaskBoard.css'
 
@@ -44,35 +47,35 @@ export default function TaskBoard() {
   ])
 
   return (
-    <div className="taskBoard-wrapper board-component">
-      <header className='taskBoard-header'>
-        <h3>任务板</h3>
-        <section className="taskBoard-function">
-          <button className="taskBoard-function-createFn">创建任务</button>
-          <section className='taskBoard-function-filters'>
-            <select name="duration" className='taskBoard-function-duration'>
-              <option value="today">今日</option>
-              <option value="week">本周</option>
-              <option value="month">本月</option>
-              <option value="year">今年</option>
-            </select>
-            <div className='taskBoard-function-query'>
-              <select name="queryForSelect">
-                {
-                  queryObj.map(item => {
-                    return (
-                      <option key={item.value} value={item.value}>{item.objName}</option>
-                    )
-                  })
-                }
+      <div className="taskBoard-wrapper board-component">
+        <header className='taskBoard-header'>
+          <h3>任务板</h3>
+          <section className="taskBoard-function">
+            <button className="taskBoard-function-createFn" onClick={() => handleComponentOpen('createTask')}>创建任务</button>
+            <section className='taskBoard-function-filters'>
+              <select name="duration" className='taskBoard-function-duration'>
+                <option value="today">今日</option>
+                <option value="week">本周</option>
+                <option value="month">本月</option>
+                <option value="year">今年</option>
               </select>
-              <input type="text" name='queryForInput' placeholder='请输入' />
-              <span className='queryFor-desc'></span>
-            </div>
+              <div className='taskBoard-function-query'>
+                <select name="queryForSelect">
+                  {
+                    queryObj.map(item => {
+                      return (
+                        <option key={item.value} value={item.value}>{item.objName}</option>
+                      )
+                    })
+                  }
+                </select>
+                <input type="text" name='queryForInput' placeholder='请输入' />
+                <span className='queryFor-desc'></span>
+              </div>
+            </section>
           </section>
-        </section>
-      </header>
-      <BoardList keys={keys} data={data} />
-    </div>
+        </header>
+        <BoardList keys={keys} data={data} />
+      </div>
   )
 }

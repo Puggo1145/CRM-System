@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import './TaskToday.css'
 
-import BoardList from '../../../../components/BoardList'
+import BoardList from '../../../../components/BoardList/BoardList'
 
 interface taskTodayDataType {
     employee: string;

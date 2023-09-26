@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import BoardList from "../../../../components/BoardList"
+import BoardList from "../../../../components/BoardList/BoardList"
 
 import './QuickCheck.css'
 

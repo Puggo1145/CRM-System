@@ -1,0 +1,67 @@
+.createTask-wrapper {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  padding: 16px 0;
+  min-width: 300px;
+  width: 30vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.createTask-wrapper header {
+  padding: 0 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.createTask-wrapper header h3 {
+  font-size: 16px;
+}
+.createTask-wrapper header button {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  background-image: url(../../../../static/common/close-icon.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-color: #fff;
+}
+.createTask-wrapper main {
+  padding: 16px;
+  padding-top: 0;
+  overflow-y: scroll;
+  height: calc(100vh - 100px);
+}
+.createTask-wrapper main form section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+.createTask-wrapper main form section label {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.createTask-wrapper main form section textarea {
+  height: 80px;
+  margin-bottom: 16px;
+}
+.createTask-wrapper main form section .createTask-taskContent {
+  height: 400px;
+}
+.createTask-wrapper footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-top: 1px solid #ddd;
+  background-color: #fff;
+  padding: 16px;
+}
+.createTask-wrapper footer .createTask-confirm {
+  float: right;
+}
