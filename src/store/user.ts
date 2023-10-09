@@ -11,7 +11,7 @@ type UserState = {
 
 const useUser = create<UserState>((set) => ({
     userInfo: {
-        username: 'Andrew',
+        username: '',
         role: 'user',
     },
 
