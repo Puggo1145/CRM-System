@@ -57,6 +57,7 @@
   opacity: 0.8;
 }
 .sidebar-wrapper .sidebar-user .sidebar-user-setting {
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -71,9 +72,9 @@
   height: 40px;
   line-height: 40px;
   text-align: center;
-  cursor: pointer;
   transition: all 0.15s ease-in-out;
 }
-.sidebar-wrapper .sidebar-user .sidebar-user-setting li:hover {
+.sidebar-wrapper .sidebar-user .sidebar-user-setting .sidebar-user-setting-fn:hover {
+  cursor: pointer;
   background-color: #2f343d;
 }

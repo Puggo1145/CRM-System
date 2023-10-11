@@ -1,3 +1,4 @@
+import cookie from 'react-cookies';
 import { useState, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
@@ -26,7 +27,7 @@ export default function Sidebar() {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const setUserInfo = useUser(state => state.setUserInfo);
+    const [userInfo, setUserInfo] = useUser(state => [state.userInfo, state.setUserInfo]);
 
     const [links, setLinks] = useState<Link[]>([
         {name: '工作台', path: '/dashboard/workbench', icon: [workbenchIcon, workbenchActivateIcon], active: true},
@@ -53,8 +54,11 @@ export default function Sidebar() {
     const handleExitLogin = () => {
         // 1. 清除 user 信息
         setUserInfo({ username: '',  })
+
+        // 2. 清除 cookie
+        cookie.remove('jwt');
     
-        // 2. 跳转到登录页面
+        // 3. 跳转到登录页面
         navigate('/login')
     };
 
@@ -86,7 +90,9 @@ export default function Sidebar() {
                     onClick={() => setIsUserSettingShow(!isUserSettingShow)}
                 />
                 <ul className='sidebar-user-setting' style={{ display: isUserSettingShow ? 'block' : 'none' }}>
-                    <li onClick={handleExitLogin}>退出登录</li>
+                    <li>{userInfo.username}</li>
+                    <li>{userInfo.role === 'admin' ? '管理员' : '员工'}</li>
+                    <li onClick={handleExitLogin} className='sidebar-user-setting-fn'>退出登录</li>
                 </ul>
             </section>
         </nav>

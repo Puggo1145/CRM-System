@@ -6,6 +6,7 @@
   border: none;
   text-decoration: none;
   outline: none;
+  font-family: sans-serif;
 }
 body {
   overflow-x: hidden;
@@ -47,4 +48,19 @@ select {
 }
 option {
   color: #000;
+}
+.board-button {
+  cursor: pointer;
+  width: 100%;
+  height: 48px;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.8);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #fff;
+}
+.board-button:hover {
+  background-color: #000000;
+  transition: all 0.2s ease-in-out;
 }

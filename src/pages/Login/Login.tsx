@@ -54,8 +54,8 @@ export default function Login() {
 
       if (loginRes.status === 200) {
         setUserInfo({
-          username: loginRes.data.username,
-          role: loginRes.data.role
+          username: loginRes.data.data.username,
+          role: loginRes.data.data.role
         });
 
         navigate('/dashboard/workbench');
@@ -66,13 +66,17 @@ export default function Login() {
           content: err.response.data.message,
           type: 'error'
         });
-      }; 
+      };
     };
   };
 
   const handleRefocus = (inputName: string) => {
     setFilledInput(filledInput.filter(item => item !== inputName));
     inputName === 'username' ? usernameRef.current!.placeholder = '请输入用户名' : passwordRef.current!.placeholder = '请输入密码';
+  };
+
+  const toRegister = () => {
+    navigate('/register');
   };
 
   return (
@@ -95,7 +99,8 @@ export default function Login() {
               onFocus={() => handleRefocus('password')}
             />
           </section>
-          <button className='login-board-submit' onClick={(event) => handleSubmit(event)}>登录</button>
+          <button className='login-board-button login-board-submit' onClick={(event) => handleSubmit(event)}>登录</button>
+          <button className='login-board-button login-board-register' onClick={toRegister}>注册</button>
         </form>
       </div>
     </div>

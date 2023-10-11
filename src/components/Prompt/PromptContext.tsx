@@ -4,16 +4,16 @@ import { CSSTransition } from 'react-transition-group';
 import Prompt from './Prompt';
 
 interface PromptContextType {
-    showPrompt: (info: { content: string, type: 'error' | 'correct' }) => void;
+    showPrompt: (info: { content: string, type: 'error' | 'success' }) => void;
 }
 
 const PromptContext = createContext<PromptContextType | null>(null);
 
 export function PromptProvider({ children }: { children: ReactNode }) {
-    const [prompt, setPrompt] = useState<{ content?: string, type?: 'error' | 'correct' }>({});
+    const [prompt, setPrompt] = useState<{ content?: string, type?: 'error' | 'success' }>({});
     const [isPromptShow, setIsPromptShow] = useState<boolean>(false);
 
-    const showPrompt = (info: { content: string, type: 'error' | 'correct' }) => {
+    const showPrompt = (info: { content: string, type: 'error' | 'success' }) => {
         setPrompt({ ...info });
         setIsPromptShow(true);
         setTimeout(() => {
