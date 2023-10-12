@@ -35,6 +35,10 @@
   background-size: 16px;
   background-position: right 8px center;
 }
+.database-wrapper .database-content .database-content-functions .database-content-crud {
+  display: flex;
+  gap: 16px;
+}
 .database-wrapper .database-content .database-content-functions .database-content-crud button {
   height: 34px;
   padding: 0 12px;

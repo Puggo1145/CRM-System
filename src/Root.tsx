@@ -32,8 +32,8 @@ function App() {
   
         if (loginRes.status === 200 && location.pathname === '/login' || location.pathname === '/') {
           setUserInfo({
-            username: loginRes.data.username,
-            role: loginRes.data.role
+            username: loginRes.data.data.username,
+            role: loginRes.data.data.role
           });
           navigate('/dashboard/workbench', {replace: true});
         };

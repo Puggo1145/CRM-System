@@ -3,7 +3,7 @@ import { create } from "zustand";
 type UserState = {
     userInfo: {
         username: string | null;
-        role: 'admin' | 'user';
+        role: 'admin' | 'user' | null;
     };
 
     setUserInfo: (info: Partial<UserState['userInfo']>) => void;
@@ -11,8 +11,8 @@ type UserState = {
 
 const useUser = create<UserState>((set) => ({
     userInfo: {
-        username: '',
-        role: 'user',
+        username: null,
+        role: null,
     },
 
     setUserInfo: (info) => set((state) => ({

@@ -90,8 +90,8 @@ export default function Sidebar() {
                     onClick={() => setIsUserSettingShow(!isUserSettingShow)}
                 />
                 <ul className='sidebar-user-setting' style={{ display: isUserSettingShow ? 'block' : 'none' }}>
-                    <li>{userInfo.username}</li>
-                    <li>{userInfo.role === 'admin' ? '管理员' : '员工'}</li>
+                    <li>用户名：{userInfo.username}</li>
+                    <li>权限：{userInfo.role === 'admin' ? '管理员' : '员工'}</li>
                     <li onClick={handleExitLogin} className='sidebar-user-setting-fn'>退出登录</li>
                 </ul>
             </section>

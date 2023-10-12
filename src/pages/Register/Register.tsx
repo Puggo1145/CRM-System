@@ -62,8 +62,8 @@ export default function Register() {
                 showPrompt({ content: "注册成功", type: 'success' })
 
                 setUserInfo({
-                    username: registerRes.data.data.user.username,
-                    role: registerRes.data.data.user.role
+                    username: registerRes.data.data.username,
+                    role: registerRes.data.data.role
                 });
 
                 navigateTo('/dashboard/workbench');

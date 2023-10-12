@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
+import CreateData from './CreateData/CreateData'
+
 import { handleStatusColor } from '../../../utils/statusColor'
 
 import './Database.css'
@@ -53,6 +55,7 @@ export default function Database() {
 
   return (
     <div className='database-wrapper'>
+      <CreateData />
       <header className='database-header'>
         <h2>数据库</h2>
       </header>
@@ -67,6 +70,7 @@ export default function Database() {
             <input type="text" name='database-filter-query' placeholder='请输入要查询的内容' />
           </section>
           <section className='database-content-crud'>
+            <button className='database-content-create btn-blue'>添加数据</button>
             <button className='database-content-create btn-blue'>导入数据</button>
           </section>
         </section>
