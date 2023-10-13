@@ -1,10 +1,12 @@
-import { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { createPortal } from 'react-dom'
+import PubSub from 'pubsub-js';
 
 // stores
 import useSelects from '../../../../store/selects';
 
 import BackgroundMask from '../../../../components/BackgroundMask/BackgroundMask';
+import { handleComponentOpen } from '../../../../utils/handleComponentOpen';
 
 // types
 import { schoolType } from '../../../../types/createDataModeltype';
@@ -25,6 +27,17 @@ type FormType = {
 }
 
 export default function CreateData() {
+
+    const [isCreateDataOpened, setIsCreateDataOpened] = useState<boolean>(false);
+    useEffect(() => {
+        const token = PubSub.subscribe('openCreateData', () => {
+            setIsCreateDataOpened(!isCreateDataOpened);
+        });
+
+        return () => {
+            PubSub.unsubscribe(token);
+        };
+    }, [isCreateDataOpened]);
 
     const selects = useSelects(state => state);
 
@@ -126,41 +139,60 @@ export default function CreateData() {
         setIsStudentOpened(newStudentOpened);
     }
 
-    const renderForm = (formName: string, label: string, selects?: string[]) => {
+    const renderForm = (formName: string, label: string, ref: React.MutableRefObject<any>, selects?: string[]) => {
         switch (formName) {
             case 'input':
-                return <input className='form-input' type='text' placeholder={`请输入${label}`} />;
+                return <input ref={ref} className='form-input' type='text' placeholder={`请输入${label}`} />;
             case 'textarea':
-                return <textarea className='form-textarea' placeholder={`请输入${label}`} />;
+                return <textarea ref={ref} className='form-textarea' placeholder={`请输入${label}`} />;
             case 'select':
                 return (
-                    <select className='form-select'>
-                        {
-                            selects?.map((select, selectIdx) => {
-                                return <option className='form-option' key={`select-${selectIdx}`}>{select}</option>
-                            })
-                        }
+                    <select ref={ref} className='form-select'>
+                        {selects?.map((select, selectIdx) => <option className='form-option' key={`select-${selectIdx}`}>{select}</option>)}
                     </select>
                 );
             default:
-                return <input type='text' placeholder={`请输入${label}`} />;
+                return <input ref={ref} type='text' placeholder={`请输入${label}`} />;
         }
     };
 
-    // useEffect(() => {
-    //     console.log('teachers：')
-    //     console.log(isTeacherOpened);
-    // }, [isTeacherOpened])
-    // useEffect(() => {
-    //     console.log("student:");
-    //     console.log(isStudentOpened );
-    // }, [isStudentOpened]);
+    // 表单 refs
+    const schoolRefs = forms.map(form => ({
+        school: Object.fromEntries(Object.keys(form.school).map(key => [key, React.useRef<HTMLFormElement>()])),
+        teachers: form.teachers.map(teacher => ({
+            teacher: teacher.teacher ? Object.fromEntries(Object.keys(teacherModel).map(key => [key, React.useRef<HTMLFormElement>()])) : null,
+            students: teacher.students.map(student => student ? Object.fromEntries(Object.keys(studentModel).map(key => [key, React.useRef<HTMLFormElement>()])) : null)
+        }))
+    }));
+
+    // 收集所有数据
+    const collectData = () => {
+        const data = schoolRefs.map(schoolRef => ({
+            school: Object.fromEntries(Object.entries(schoolRef.school).map(([key, ref]) => [key, ref.current!.value])),
+            teachers: schoolRef.teachers.map(teacherRef => ({
+                teacher: teacherRef.teacher ? Object.fromEntries(Object.entries(teacherRef.teacher).map(([key, ref]) => [key, ref.current!.value])) : null,
+                students: teacherRef.students.map(studentRef => studentRef ? Object.fromEntries(Object.entries(studentRef).map(([key, ref]) => [key, ref.current!.value])) : null)
+            }))
+        }));
+
+        console.log(data);
+
+        return data;
+    };
+
+    const handleSubmit = () => {
+        const data = collectData();
+        console.log(data);
+        // TODO: Submit data to your backend
+    };
+
 
     return createPortal(
+        isCreateDataOpened &&
         <div className='createData-wrapper'>
             <header>
                 <h3>创建数据</h3>
-                <img src={closeIcon} />
+                <img src={closeIcon} onClick={() => handleComponentOpen('openCreateData')} />
             </header>
             <ul className='createData-forms'>
                 {
@@ -173,7 +205,7 @@ export default function CreateData() {
                                     Object.entries(form.school).map(([key, value]) => (
                                         <section key={`form-${formIdx}-school-${key}`} className='createData-formData-item'>
                                             <label>{value.label}</label>
-                                            {renderForm(value.form, value.label)}
+                                            {renderForm(value.form, value.label, schoolRefs[formIdx].school[key], value.selects)}
                                         </section>
                                     ))
                                 }
@@ -203,7 +235,10 @@ export default function CreateData() {
                                                         Object.entries(teacherModel).map(([key, value]) => (
                                                             <section key={`form-${formIdx}-teacher-${teacherIdx}-${key}`} className='createData-formData-item'>
                                                                 <label>{value.label}</label>
-                                                                {renderForm(value.form, value.label, value.selects)}
+                                                                {
+                                                                    // @ts-ignore
+                                                                    renderForm(value.form, value.label, schoolRefs[formIdx].teachers[teacherIdx].teacher[key], value.selects)
+                                                                }
                                                             </section>
                                                         ))
                                                     }
@@ -223,7 +258,7 @@ export default function CreateData() {
                                                                                     }}
                                                                                     style={{ transform: `rotate(${isStudentOpened[teacherIdx][studentIdx] ? 180 : 0}deg)` }}
                                                                                 />
-                                                                                <h4>学生{studentIdx + 1}</h4>
+                                                                                <h4>学生{studentIdx + 1} - 班主任{teacherIdx + 1}</h4>
                                                                             </span>
                                                                             <span className='createData-formData-header-right'>
                                                                                 <img src={closeIcon} onClick={() => deleteStudent(formIdx, teacherIdx, studentIdx)} />
@@ -233,7 +268,10 @@ export default function CreateData() {
                                                                             Object.entries(studentModel).map(([key, value]) => (
                                                                                 <div key={`form-${formIdx}-student-${studentIdx}-${key}`} className='createData-formData-item'>
                                                                                     <label>{value.label}</label>
-                                                                                    {renderForm(value.form, value.label, value.selects)}
+                                                                                    {
+                                                                                        // @ts-ignore
+                                                                                        renderForm(value.form, value.label, schoolRefs[formIdx].teachers[teacherIdx].students[studentIdx][key], value.selects)
+                                                                                    }
                                                                                 </div>
                                                                             ))
                                                                         }
@@ -267,8 +305,9 @@ export default function CreateData() {
                 }
             </ul>
             <footer>
-                <button className='createData-submit btn-blue'>创建</button>
+                <button className='createData-submit btn-blue'onClick={collectData}>创建</button>
             </footer>
+            <BackgroundMask onClick={() => handleComponentOpen('openCreateData')} state={isCreateDataOpened} />
         </div>,
         document.body
     )

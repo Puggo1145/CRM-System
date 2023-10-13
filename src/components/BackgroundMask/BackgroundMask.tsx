@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import '../../style/style.css';
 
 type BackgroundMaskProps = {
@@ -28,7 +29,7 @@ export default function BackgroundMask({ onClick, state }: BackgroundMaskProps) 
   }, [state]);
 
 
-  return (
+  return createPortal(
     <div 
         className='background-mask' 
         onClick={onClick} 
@@ -36,6 +37,7 @@ export default function BackgroundMask({ onClick, state }: BackgroundMaskProps) 
           opacity: state ? '0.5' : '0',
           display: display ? 'block' : 'none',
         }}
-    ></div>
+    ></div>,
+    document.body
   )
 }
