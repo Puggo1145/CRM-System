@@ -1,15 +1,74 @@
 .database-wrapper {
     height: 100%;
 
+    header {
+        display: flex;
+        padding: 0 16px;
+        font-size: 24px;
+        font-weight: 700;
+
+        a:hover {
+            color: #4362e2;
+        }
+    }
+
     .database-content {
         display: flex;
         flex-direction: column;
         padding: 0;
         padding-top: 16px;
 
-        header {
-            padding: 0 16px;
+        .database-content-data-father {
+            .database-content-data-item {
+                border-bottom: 8px solid #ddd!important;
+                h3 {
+                    font-size: 20px!important;
+                }
+            }
         }
+        
+        .database-content-data {
+
+            .database-content-data-item {
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                padding: 16px;
+                border-bottom: 1px solid #ddd;
+        
+                h3 {
+                    font-size: 16px;
+                }
+        
+                p {
+                    font-size: 14px;
+                }
+                
+                &:hover {
+                    background-color: #f5f5f5;
+                }
+
+                .database-content-data-item-detail {
+                    display: flex;
+                    flex-wrap: wrap;
+                    column-gap: 36px;
+                    row-gap: 8px;
+                    color: #333;
+                    font-size: 14px;
+                }
+
+                .database-content-data-item-remark {
+                    font-size: 14px;
+                }
+            }
+
+            .database-content-data-noData {
+                text-align: center;
+            }
+
+        }
+
 
         .database-content-functions {
             padding: 0 16px;
@@ -43,7 +102,7 @@
             .database-content-crud {
                 display: flex;
                 gap: 16px;
-                
+
                 button {
                     height: 34px;
                     padding: 0 12px;
@@ -54,137 +113,6 @@
         .spacer {
             width: 100%;
             border-top: 1px solid #ddd;
-        }
-
-        .database-content-data {
-            width: 100%;
-            border-radius: 4px;
-
-            // school 层级
-            .database-content-data-school {
-                display: flex;
-                flex-direction: column;
-                cursor: pointer;
-                padding: 16px;
-                padding-right: 0;
-                border-bottom: 1px solid #ddd;
-
-                .database-content-data-school_name {
-                    font-size: 18px;
-                    margin-bottom: 16px;
-                }
-
-                .database-content-data-school_info {
-                    display: flex;
-                    gap: 32px;
-
-                    li {
-                        display: flex;
-                        flex-direction: column;
-
-                        span:first-child {
-                            font-size: 12px;
-                            color: #999;
-                            margin-bottom: 4px;
-                        }
-
-                        span:last-child {
-                            font-size: 14px;
-                            color: #333;
-                        }
-                    }
-                }
-
-                &:hover {
-                    background-color: #f5f5f5;
-                }
-            }
-
-            .database-selected {
-                border-left: 4px solid #4362e3;
-            }
-
-            // teacher 层级
-            .database-content-data-teachers {
-                border-bottom: 1px solid #ddd;
-                padding-left: 24px;
-
-                .database-content-data-teacher {
-                    cursor: pointer;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    width: 100%;
-                    font-size: 14px;
-                    padding: 16px;
-                    padding-right: 24px;
-                    border-bottom: 1px solid #ddd;
-
-                    div {
-                        display: flex;
-                        flex-direction: column;
-
-                        span:first-child {
-                            font-size: 12px;
-                            color: #999;
-                            margin-bottom: 4px;
-                            font-weight: 400;
-                        }
-                    }
-
-                    a {
-                        color: #4362e3;
-                        text-decoration: underline;
-                    }
-
-                    .database-content-data-teacher_name {
-                        font-weight: 700;
-                    }
-
-                    &:hover {
-                        background-color: #f5f5f5;
-                    }
-
-                    &:last-child {
-                        border-bottom: none;
-                    }
-                }
-            }
-
-            .database-content-data-student {
-                cursor: pointer;
-                display: flex;
-                justify-content: space-between;
-                font-size: 14px;
-                padding: 8px 16px;
-                border-bottom: 1px solid #ddd;
-                border-left: 4px solid #4362e3;
-
-                span {
-                    width: 80px;
-                }
-
-                &:hover {
-                    background-color: #f5f5f5;
-                }
-            }
-
-            .database-headerRow {
-                display: flex;
-                justify-content: space-between;
-                padding: 8px 16px;
-                padding-right: 24px;
-                border-bottom: 1px solid #ddd;
-                border-left: 4px solid #4362e3;
-
-                span {
-                    width: 80px;
-                    font-size: 12px;
-                    color: #999;
-                    margin-bottom: 4px;
-                    font-weight: 400;
-                }
-            }
         }
     }
 }

@@ -10,7 +10,12 @@ import Register from './pages/Register/Register'
 import Dashboard from './pages/Dashboard/Dashboard'
 import Workbench from './pages/Dashboard/WorkBench/Workbench'
 import TaskCenter from './pages/Dashboard/TaskCenter/TaskCenter'
+import CreateTask from './pages/Dashboard/TaskCenter/CreateTask/CreateTask'
+
 import Database from './pages/Dashboard/Database/Database'
+import SchoolData from './pages/Dashboard/Database/SchoolData/SchoolData'
+import TeacherData from './pages/Dashboard/Database/TeacherData/TeacherData'
+import StudentData from './pages/Dashboard/Database/StudentData/StudentData'
 
 import ErrorPage from './pages/ErrorPage/ErrorPage'
 
@@ -44,20 +49,37 @@ const router = createBrowserRouter([
             element: <TaskCenter />,
           },
           {
+            path: 'taskcenter/createtask',
+            element: <CreateTask />,
+          },
+          {
             path: 'database',
             element: <Database />,
+            children: [
+              {
+                path: '',
+                element: <SchoolData />,
+              },
+              {
+                path: ':schoolId',
+                element: <TeacherData />,
+              },
+              {
+                path: ':schoolId/:teacherId',
+                element: <StudentData />,
+              }
+            ]
           }
         ]
       }
     ]
   },
-  
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <RouterProvider router={router} />
   </React.StrictMode>,
 );
 

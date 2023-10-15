@@ -1,71 +1,22 @@
-.taskOpen {
-  right: 0vw!important;
-}
 .createTask-wrapper {
-  z-index: 1;
-  position: absolute;
-  top: 0;
-  right: -30vw;
-  border: 1px solid #ddd;
-  background-color: #fff;
-  padding: 16px 0;
-  min-width: 300px;
-  width: 30vw;
-  height: 100vh;
+  position: relative;
+  height: 100%;
+}
+.createTask-wrapper .createTask-header h3 {
+  font-size: 24px;
+}
+.createTask-wrapper .createTask-content {
   display: flex;
   flex-direction: column;
-  transition: all 0.3s ease;
+  row-gap: 24px;
 }
-.createTask-wrapper header {
-  padding: 0 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.createTask-wrapper header h3 {
-  font-size: 16px;
-}
-.createTask-wrapper header button {
-  cursor: pointer;
-  width: 16px;
-  height: 16px;
-  background-image: url(../../../../static/common/close-icon.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  background-color: #fff;
-}
-.createTask-wrapper main {
-  padding: 16px;
-  padding-top: 0;
-  overflow-y: scroll;
-  height: calc(100vh - 100px);
-}
-.createTask-wrapper main form section {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 16px;
-}
-.createTask-wrapper main form section label {
-  font-size: 14px;
-  margin-bottom: 8px;
-}
-.createTask-wrapper main form section textarea {
-  height: 80px;
-  margin-bottom: 16px;
-}
-.createTask-wrapper main form section .createTask-taskContent {
-  height: 400px;
-}
-.createTask-wrapper footer {
-  width: 100%;
+.createTask-wrapper .createTask-content-submit {
   position: absolute;
   bottom: 0;
-  right: 0;
-  border-top: 1px solid #ddd;
-  background-color: #fff;
-  padding: 16px;
+  width: 100%;
+  height: 68px;
 }
-.createTask-wrapper footer .createTask-confirm {
-  float: right;
+.createTask-wrapper .createTask-content-submit button {
+  position: absolute;
+  right: 16px;
 }

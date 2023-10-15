@@ -1,0 +1,30 @@
+.checkPrompt-wrapper {
+  z-index: 10;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 320px;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 0 12px -2px #ddd;
+  padding: 16px;
+}
+.checkPrompt-wrapper p {
+  margin-bottom: 16px;
+}
+.checkPrompt-wrapper .checkPrompt-checkBtn {
+  float: right;
+  display: flex;
+  gap: 8px;
+}
+.checkPrompt-wrapper .checkPrompt-checkBtn button:last-child {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ddd;
+}
+.checkPrompt-wrapper .checkPrompt-checkBtn button:last-child:hover {
+  filter: brightness(1);
+  background-color: #f5f5f5;
+}

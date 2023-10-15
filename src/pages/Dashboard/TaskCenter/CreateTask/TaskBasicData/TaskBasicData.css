@@ -1,0 +1,17 @@
+.taskBasicData-wrapper header h3 {
+  font-size: 16px;
+  font-weight: 700;
+}
+.taskBasicData-wrapper .taskBasicData-content {
+  max-width: 740px;
+  margin: 0 auto;
+}
+.taskBasicData-wrapper .taskBasicData-content .taskBasicData-content-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.taskBasicData-wrapper .taskBasicData-content .taskBasicData-content-item label {
+  width: 100px;
+  font-size: 12px;
+}

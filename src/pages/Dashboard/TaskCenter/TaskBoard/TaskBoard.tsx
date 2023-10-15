@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 import BoardList from '../../../../components/BoardList/BoardList'
 
@@ -51,7 +52,7 @@ export default function TaskBoard() {
         <header className='taskBoard-header'>
           <h3>任务板</h3>
           <section className="taskBoard-function">
-            <button className="taskBoard-function-createFn" onClick={() => handleComponentOpen('createTask')}>创建任务</button>
+            <Link className="taskBoard-function-createFn btn-blue" to={"/dashboard/taskcenter/createtask"}>创建任务</Link>
             <section className='taskBoard-function-filters'>
               <select name="duration" className='taskBoard-function-duration'>
                 <option value="today">今日</option>

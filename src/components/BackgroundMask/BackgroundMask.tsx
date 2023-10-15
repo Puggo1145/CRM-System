@@ -3,11 +3,11 @@ import { createPortal } from 'react-dom';
 import '../../style/style.css';
 
 type BackgroundMaskProps = {
-  onClick: () => void;
-  state: boolean;
+  onClick?: () => void;
+  state?: boolean;
 };
 
-export default function BackgroundMask({ onClick, state }: BackgroundMaskProps) {
+export default function BackgroundMask({ onClick = () => {}, state = true }: BackgroundMaskProps) {
   const [display, setDisplay] = useState<boolean>(true);
 
   useEffect(() => {

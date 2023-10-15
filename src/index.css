@@ -12,6 +12,9 @@ body {
   overflow-x: hidden;
   background-color: #f7f9fa;
 }
+a {
+  color: #000;
+}
 ::-webkit-scrollbar {
   width: 4px;
 }
