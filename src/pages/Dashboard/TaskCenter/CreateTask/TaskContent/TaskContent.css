@@ -57,9 +57,12 @@
   padding-left: 32px;
 }
 .taskContent-wrapper .taskContent-content .taskContent-selectTasks .taskContent-selectTasks-item span {
-  width: 160px;
+  width: 120px;
 }
 .taskContent-wrapper .taskContent-content .taskContent-selectTasks .taskContent-selectTasks-item:hover {
+  background-color: #f5f5f5;
+}
+.taskContent-wrapper .taskContent-content .taskContent-selectTasks .taskContent-selectTasks-item-selected {
   background-color: #f5f5f5;
 }
 .taskContent-wrapper .taskContent-content .taskContent-selectTasks .taskContent-selectTasks-headerRow {

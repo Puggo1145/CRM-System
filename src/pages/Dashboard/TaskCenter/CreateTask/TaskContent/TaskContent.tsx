@@ -13,7 +13,13 @@ interface targetType {
     status: string,
 }
 
-export default function TaskContent() {
+export default function TaskContent(
+    {selectedTargets, setSelectedTargets}: {
+        selectedTargets: string[],
+        setSelectedTargets: React.Dispatch<React.SetStateAction<string[]>>
+    }
+    
+    ) {
 
     const backendUrl = useUrl(state => state.backendUrl);
 
@@ -37,7 +43,14 @@ export default function TaskContent() {
 
     // 查询结果 /////////////////////////////////////////////////////////////
     const [targets, setTargets] = useState<targetType[]>([]);
-
+    
+    const handleSelectTarget = (id: string) => {
+        if (selectedTargets.includes(id)) {
+            setSelectedTargets(selectedTargets.filter(item => item !== id));
+        } else {
+            setSelectedTargets([...selectedTargets, id]);
+        }
+    };
 
     // 请求所有学校
     useEffect(() => {
@@ -75,6 +88,7 @@ export default function TaskContent() {
     // 根据任务目标请求对应的任务对象
     useEffect(() => {
         if (currentTaskTarget === '请选择') return;
+        setSelectedTargets([]);
 
         (async () => {
             const query_taskTarget = currentTaskTarget === '班主任' ? 'allTeachers' : 'allStudents'
@@ -96,7 +110,7 @@ export default function TaskContent() {
         <div className="taskContent-wrapper board-component">
             <header>
                 <h3>分配任务内容</h3>
-                <p>选择要分配的任务对象</p>
+                <p>选择要分配的任务对象，班主任和学生不能混合选择，否则会丢失之前选择的内容</p>
             </header>
             <section className='taskContent-content'>
                 <section className='taskContent-content-item'>
@@ -156,7 +170,10 @@ export default function TaskContent() {
                         {
                             targets.map(item => {
                                 return (
-                                    <div className='taskContent-selectTasks-item' key={item.id}>
+                                    <div 
+                                        className={`taskContent-selectTasks-item ${selectedTargets.includes(item.id) && 'taskContent-selectTasks-item-selected'}`} 
+                                        key={item.id} 
+                                        onClick={() => handleSelectTarget(item.id)}>
                                         <span className='taskContent-selectTasks-item-name'>{item.name}</span>
                                         <span>{item.type}</span>
                                         <span>{item.status}</span>

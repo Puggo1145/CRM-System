@@ -1,8 +1,8 @@
 import { create } from "zustand";
 
 interface employeeType {
-    _id: string
-    name: string
+    user_id: string
+    username: string
 }
 
 type EmployeeState = {
