@@ -11,6 +11,7 @@ import Dashboard from './pages/Dashboard/Dashboard'
 import Workbench from './pages/Dashboard/WorkBench/Workbench'
 import TaskCenter from './pages/Dashboard/TaskCenter/TaskCenter'
 import CreateTask from './pages/Dashboard/TaskCenter/CreateTask/CreateTask'
+import TaskDetail from './pages/Dashboard/TaskCenter/TaskDetail/TaskDetail'
 
 import Database from './pages/Dashboard/Database/Database'
 import SchoolData from './pages/Dashboard/Database/SchoolData/SchoolData'
@@ -44,14 +45,21 @@ const router = createBrowserRouter([
             path: 'workbench',
             element: <Workbench />,
           },
+
           {
             path: 'taskcenter',
             element: <TaskCenter />,
+            children: [{
+              path: ':id',
+              element: <TaskDetail />
+            }],
           },
           {
             path: 'taskcenter/createtask',
             element: <CreateTask />,
           },
+
+
           {
             path: 'database',
             element: <Database />,

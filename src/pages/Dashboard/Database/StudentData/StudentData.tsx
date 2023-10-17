@@ -20,21 +20,25 @@ export default function StudentData() {
 
             const studentsRes = await makeRequest({
                 method: 'GET',
-                url: `${backendUrl}/api/v1/data/students?id=${location.search.slice(1)}`
+                url: `${backendUrl}/api/v1/data/students?father_id=${location.search.slice(1)}`
             });
 
             if (!('error' in studentsRes)) {
+                console.log(studentsRes.data.data.students);
+
                 setStudents(studentsRes.data.data.students);
             };
 
             const teacherRes = await makeRequest({
                 method: 'GET',
-                url: `${backendUrl}/api/v1/data/teachers?father_id=${location.search.slice(1)}`
+                url: `${backendUrl}/api/v1/data/teachers?id=${location.search.slice(1)}`
             });
 
             if (!('error' in teacherRes)) {
                 setTeacher(teacherRes.data.data.teachers[0]);
             };
+
+            
         })();
     }, [location.search]);
 
@@ -63,7 +67,7 @@ export default function StudentData() {
                     students.length > 0 ?
                         students.map(student => {
                             return (
-                                <div key={student.school_id} className="database-content-data-item">
+                                <div key={student.student_id} className="database-content-data-item">
                                     <h3>{student.student_name}</h3>
                                     <section className='database-content-data-item-detail'>
                                         <p>性别：{student.student_sex}</p>

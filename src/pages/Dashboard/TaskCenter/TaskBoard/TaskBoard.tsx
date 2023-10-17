@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import makeRequest from '../../../../utils/makeRequest'
 
-import BoardList from '../../../../components/BoardList/BoardList'
+import TaskBoardList from './TaskBoardList/TaskBoardList'
 
-// utils
-import { handleComponentOpen } from '../../../../utils/handleComponentOpen'
+import useUrl from '../../../../store/urls'
 
 import './TaskBoard.css'
 
@@ -13,39 +13,59 @@ interface QueryObj {
   objName: string
 }
 
-interface TaskType {
-  _id: string
+export interface TaskType {
+  [key: string]: string | number | undefined;
+  task_id: string
+  task_name?: string
   employee: string
-  target: string
-  targetNum: number
+  username?: string // 员工的名字
+  task_remark?: string
+  task_target: string
+  taskTargetObj_num: number
+  
   status: string
+  
   deadline: string
+  create_time: string
 }
 
 export default function TaskBoard() {
+
+  const backendUrl = useUrl(state => state.backendUrl);
 
   const [queryObj, setQueryObj] = useState<QueryObj[]>([
     { value: 'employee', objName: '员工名称' },
     { value: 'student', objName: '学生名称' },
     { value: 'teacher', objName: '班主任名称' },
-  ])
+  ]);
 
-  const [keys, setKeys] = useState<string[]>(['对接员工', '任务目标', '目标数量', '状态', '截止时间'])
-  const [data, setData] = useState<TaskType[]>([
-    { _id: '1', employee: '张三', target: '联系班主任', targetNum: 10, status: '待确认', deadline: '2021-10-10' },
-    { _id: '2', employee: '李四', target: '联系学生', targetNum: 10, status: '进行中', deadline: '2021-10-10' },
-    { _id: '3', employee: '王五', target: '联系学生', targetNum: 10, status: '待审核', deadline: '2021-10-10' },
-    { _id: '4', employee: '张三', target: '联系班主任', targetNum: 10, status: '已完成', deadline: '2021-10-10' },
-    { _id: '5', employee: '王五', target: '联系班主任', targetNum: 10, status: '已逾期', deadline: '2021-10-08' },
-    { _id: '6', employee: '张三', target: '联系班主任', targetNum: 10, status: '已逾期', deadline: '2021-10-08' },
-    { _id: '7', employee: '张三', target: '联系班主任', targetNum: 10, status: '已逾期', deadline: '2021-10-08' },
-    { _id: '8', employee: '张三', target: '联系班主任', targetNum: 10, status: '已逾期', deadline: '2021-10-08' },
-    { _id: '9', employee: '张三', target: '联系班主任', targetNum: 10, status: '已逾期', deadline: '2021-10-08' },
-    { _id: '10', employee: '张三', target: '联系班主任', targetNum: 10, status: '已逾期', deadline: '2021-10-08' },
-    { _id: '11', employee: '张三', target: '联系班主任', targetNum: 10, status: '已逾期', deadline: '2021-10-08' },
-    { _id: '12', employee: '张三', target: '联系班主任', targetNum: 10, status: '已逾期', deadline: '2021-10-08' },
-    { _id: '13', employee: '张三', target: '联系班主任', targetNum: 10, status: '已逾期', deadline: '2021-10-08' },
-  ])
+  const [keys, setKeys] = useState<string[]>(['对接员工', '任务目标', '目标数量', '状态', '截止时间']);
+  
+  const [data, setData] = useState<Pick<TaskType, 'task_id' | 'username' | 'task_target' | 'taskTargetObj_num' | 'status' | 'deadline' >[]>([]);
+  useEffect(() => {
+    (async () => {
+      const tasksRes = await makeRequest({
+        method: 'GET',
+        url: `${backendUrl}/api/v1/tasks/?select=task_id,task_target,status,deadline,username`,
+      });
+
+      if (!('error' in tasksRes)) {
+        const tasks = tasksRes.data.data as TaskType[];
+        const transformedTasks = tasks.map(task => {
+          return {  
+            task_id: task.task_id,
+            username: task.username,
+            task_target: task.task_target,
+            taskTargetObj_num: task.taskTargetObj_num,
+            status: task.status,
+            deadline: task.deadline
+          }
+        });
+
+        setData(transformedTasks);
+      } 
+    })();
+  }, []);
 
   return (
       <div className="taskBoard-wrapper board-component">
@@ -76,7 +96,7 @@ export default function TaskBoard() {
             </section>
           </section>
         </header>
-        <BoardList keys={keys} data={data} />
+        <TaskBoardList keys={keys} data={data} />
       </div>
   )
 }

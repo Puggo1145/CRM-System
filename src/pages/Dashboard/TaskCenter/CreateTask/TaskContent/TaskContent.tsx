@@ -14,12 +14,12 @@ interface targetType {
 }
 
 export default function TaskContent(
-    {selectedTargets, setSelectedTargets}: {
+    { selectedTargets, setSelectedTargets }: {
         selectedTargets: string[],
         setSelectedTargets: React.Dispatch<React.SetStateAction<string[]>>
     }
-    
-    ) {
+
+) {
 
     const backendUrl = useUrl(state => state.backendUrl);
 
@@ -39,11 +39,16 @@ export default function TaskContent(
         ['', '全部'],
     ]);
     const [currentTeacherId, setCurrentTeacherId] = useState<string>('');
+    // 状态筛选条件
+    const [status, setStatus] = useState<string[]>([
+        "全部", "未对接", "对接中", "对接成功", "对接失败"
+    ]);
+    const [currentStatus, setCurrentStatus] = useState<string>('');
 
 
     // 查询结果 /////////////////////////////////////////////////////////////
     const [targets, setTargets] = useState<targetType[]>([]);
-    
+
     const handleSelectTarget = (id: string) => {
         if (selectedTargets.includes(id)) {
             setSelectedTargets(selectedTargets.filter(item => item !== id));
@@ -94,17 +99,18 @@ export default function TaskContent(
             const query_taskTarget = currentTaskTarget === '班主任' ? 'allTeachers' : 'allStudents'
             const query_school_id = currentSchoolId ? `school_id=${currentSchoolId}` : '';
             const query_teacher_id = currentTeacherId ? `teacher_id=${currentTeacherId}` : '';
+            const query_status = currentStatus === '全部' ? '' : `status=${currentStatus}`;
 
             const res = await makeRequest({
                 method: 'GET',
-                url: `${backendUrl}/api/v1/data/${query_taskTarget}?${query_school_id}&${query_teacher_id}`,
+                url: `${backendUrl}/api/v1/data/${query_taskTarget}?${query_school_id}&${query_teacher_id}&${query_status}`,
             });
 
             if (!('error' in res)) {
                 setTargets(res.data.data);
             };
         })();
-    }, [currentTaskTarget, currentSchoolId, currentTeacherId])
+    }, [currentTaskTarget, currentSchoolId, currentTeacherId, currentStatus])
 
     return (
         <div className="taskContent-wrapper board-component">
@@ -156,6 +162,18 @@ export default function TaskContent(
                                 </select>
                             </section>
                         }
+                        <section className='taskContent-content-item'>
+                            <label>状态</label>
+                            <select className="form-select" name="status" onChange={(event) => setCurrentStatus(event.target.value)}>
+                                {
+                                    status.map((item, index) => {
+                                        return (
+                                            <option value={item} key={`${item}-${index}`}>{item}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                        </section>
                     </section>
                 }
                 {
@@ -170,9 +188,9 @@ export default function TaskContent(
                         {
                             targets.map(item => {
                                 return (
-                                    <div 
-                                        className={`taskContent-selectTasks-item ${selectedTargets.includes(item.id) && 'taskContent-selectTasks-item-selected'}`} 
-                                        key={item.id} 
+                                    <div
+                                        className={`taskContent-selectTasks-item ${selectedTargets.includes(item.id) && 'taskContent-selectTasks-item-selected'}`}
+                                        key={item.id}
                                         onClick={() => handleSelectTarget(item.id)}>
                                         <span className='taskContent-selectTasks-item-name'>{item.name}</span>
                                         <span>{item.type}</span>

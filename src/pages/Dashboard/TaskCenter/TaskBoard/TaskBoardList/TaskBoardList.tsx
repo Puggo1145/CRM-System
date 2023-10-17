@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 
-import './BoardList.css'
+import '../../../../../components/BoardList/BoardList.css'
 
-import { TaskType } from '../../pages/Dashboard/TaskCenter/TaskBoard/TaskBoard';
+import { TaskType } from '../TaskBoard';
 
-export default function BoardList({ keys, data }: { keys: string[], data: Record<string, string | number>[] }) {
+export default function TaskBoardList({ keys, data }: { keys: string[], data: Partial<TaskType>[] }) {
 
     const handleStatusColor = (status: string) => {
         switch (status) {
@@ -40,10 +40,10 @@ export default function BoardList({ keys, data }: { keys: string[], data: Record
                     {
                         data.map((item, index) => {
                             return (
-                                <Link key={'item' + index} className='boardList-content-item' to={""}>
+                                <Link key={item.task_id} className='boardList-content-item' to={`/dashboard/taskcenter/${item.task_id}`}>
                                     {
                                         Object.entries(item)
-                                            .filter(([key]) => key.split('_')[1] !== 'id') // 过滤掉_id
+                                            .filter(([key]) => key !== 'task_id') // 过滤掉_id
                                             .map(([key, value], idx) => {
                                                 return (
                                                     <span

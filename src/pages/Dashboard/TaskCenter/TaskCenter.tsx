@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Outlet } from 'react-router-dom'
 
 import TaskBoard from './TaskBoard/TaskBoard'
 import TaskOverview from './TaskOverview/TaskOverview'
@@ -21,6 +22,7 @@ export default function TaskCenter() {
           <QuickCheck />
         </section>
       </div>
+      <Outlet />
     </div>
   )
 }

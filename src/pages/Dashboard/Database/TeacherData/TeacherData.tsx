@@ -28,7 +28,7 @@ export default function TeacherData() {
 
             const teachersRes = await makeRequest({
                 method: 'GET',
-                url: `${backendUrl}/api/v1/data/teachers?id=${location.search.slice(1)}`
+                url: `${backendUrl}/api/v1/data/teachers?father_id=${location.search.slice(1)}`
             });
 
             if (!('error' in teachersRes)) {
@@ -37,7 +37,7 @@ export default function TeacherData() {
 
             const schoolRes = await makeRequest({
                 method: 'GET',
-                url: `${backendUrl}/api/v1/data/schools?father_id=${location.search.slice(1)}`
+                url: `${backendUrl}/api/v1/data/schools?id=${location.search.slice(1)}`
             });
 
             if (!('error' in schoolRes)) {
