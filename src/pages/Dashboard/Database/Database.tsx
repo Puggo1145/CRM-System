@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import PubSub from 'pubsub-js'
-import { Link, Outlet, useLocation } from 'react-router-dom'
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 // pages
 import CreateData from './CreateData/CreateData'
@@ -10,6 +10,7 @@ import './Database.css'
 export default function Database() {
 
   const location = useLocation();
+  const navigateTo = useNavigate();
 
   const [isCreateDataOpened, setIsCreateDataOpened] = useState<boolean>(false);
 
@@ -28,21 +29,26 @@ export default function Database() {
   }, [isCreateDataOpened]);
 
   // 控制添加数据的弹窗
-  const openCreateData = () => {    
+  const openCreateData = () => {
     PubSub.publish('openCreateData');
   };
 
+  // // 通知进入编辑模式
+  // const handleEdit = () => {
+
+  // };
+
   return (
     <div className='database-wrapper'>
-      { isCreateDataOpened && <CreateData /> }
+      {isCreateDataOpened && <CreateData />}
       <header>
         <Link to={"/dashboard/database"}>数据库</Link>
         {
           location.pathname.split('/').toSpliced(0, 3).map((path, index) => {
-            
+
             return (
-              <a 
-                key={index} 
+              <a
+                key={index}
                 onClick={() => history.go(index + 1 - location.pathname.split('/').toSpliced(0, 3).length)}
               >{'/' + decodeURIComponent(path)}</a>
             )
@@ -61,12 +67,16 @@ export default function Database() {
           </section>
           <section className='database-content-crud'>
             <button className='database-content-create btn-blue' onClick={openCreateData}>快速添加</button>
-            <button className='database-content-create btn-blue'>导入数据</button>
+            <button
+              className='database-content-edit btn-blue'
+              style={{ backgroundColor: '#999' }}
+            >编辑</button>
+            {/* <button className='database-content-create btn-blue'>导入数据</button> */}
           </section>
         </section>
         <div className='spacer'></div>
         <section className='database-content-schools'>
-          {<Outlet />}  
+          {<Outlet />}
         </section>
       </div>
 

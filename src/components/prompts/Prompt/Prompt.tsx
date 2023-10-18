@@ -2,8 +2,8 @@ import { createPortal } from 'react-dom';
 
 import './Prompt.css';
 
-import errorIcon from '../../static/common/wrong.png';
-import correctIcon from '../../static/common/correct.png';
+import errorIcon from '../../../static/common/wrong.png';
+import correctIcon from '../../../static/common/correct.png';
 
 export default function Prompt(props: any) {
 

@@ -7,7 +7,7 @@ import useUser from './store/user';
 import useUrl from './store/urls';
 import useEmployee from './store/employee';
 
-import { PromptProvider } from './components/Prompt/PromptContext';
+import { PromptProvider } from './components/prompts/PromptContext';
 
 // common styles
 import './style/style.css'

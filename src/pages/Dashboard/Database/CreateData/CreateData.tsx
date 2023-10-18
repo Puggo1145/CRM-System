@@ -8,9 +8,9 @@ import BackgroundMask from '../../../../components/BackgroundMask/BackgroundMask
 // stores
 import useSelects from '../../../../store/selects';
 
-import CheckPrompt from '../../../../components/CheckPrompt/CheckPrompt';
+import CheckPrompt from '../../../../components/prompts/CheckPrompt/CheckPrompt';
 import { handleComponentOpen } from '../../../../utils/handleComponentOpen';
-import { usePrompt } from '../../../../components/Prompt/PromptContext';
+import { usePrompt } from '../../../../components/prompts/PromptContext';
 import deepClone from '../../../../utils/deepClone';
 
 // types

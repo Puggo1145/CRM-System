@@ -5,7 +5,7 @@ import axios from 'axios';
 import useUser from '../../store/user';
 import useUrl from '../../store/urls';
 
-import { usePrompt } from '../../components/Prompt/PromptContext';
+import { usePrompt } from '../../components/prompts/PromptContext';
 
 import './Login.css'
 

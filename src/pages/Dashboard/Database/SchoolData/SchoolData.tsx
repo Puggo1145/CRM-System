@@ -6,8 +6,6 @@ import { schoolDataType } from '../../../../types/createDataModeltype'
 
 import useUrl from '../../../../store/urls'
 
-import './SchoolData.css'
-
 export default function SchoolData() {
 
     const backendUrl = useUrl(state => state.backendUrl);

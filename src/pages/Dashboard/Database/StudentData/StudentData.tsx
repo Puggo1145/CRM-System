@@ -38,31 +38,34 @@ export default function StudentData() {
                 setTeacher(teacherRes.data.data.teachers[0]);
             };
 
-            
+
         })();
     }, [location.search]);
 
     return (
         <>
-            <section className='database-content-data database-content-data-father'>
-                <div className='database-content-data-item'>
-                    <h3>{teacher?.teacher_name}</h3>
-                    <section className='database-content-data-item-detail'>
-                        <p>性别：{teacher?.teacher_sex}</p>
-                        <p>年龄：{teacher?.teacher_age}</p>
-                        <p>毕业班年级：{teacher?.teacher_class}</p>
-                        <p>手机号：{teacher?.teacher_phone}</p>
-                        <p>微信：{teacher?.teacher_wechat}</p>
-                        <p>类型：{teacher?.teacher_type}</p>
-                        <p>状态：{teacher?.teacher_status}</p>
-                        <p>创建时间：{new Date(Number(teacher?.create_time)).toLocaleString()}</p>
-                    </section>
-                    <section className="database-content-data-item-remark">
-                        备注：{teacher?.teacher_remark ? teacher?.teacher_remark : "无"}
-                    </section>
-                </div>
-            </section>
             <section className='database-content-data'>
+                <section className='database-content-data-father'>
+                    <div className='database-content-data-item'>
+                        <div className="database-content-data-father-basicInfo">
+                            <h3>{teacher?.teacher_name}</h3>
+                            <section className='database-content-data-item-detail'>
+                                <p>性别：{teacher?.teacher_sex}</p>
+                                <p>年龄：{teacher?.teacher_age}</p>
+                                <p>毕业班年级：{teacher?.teacher_class}</p>
+                                <p>手机号：{teacher?.teacher_phone}</p>
+                                <p>微信：{teacher?.teacher_wechat}</p>
+                                <p>类型：{teacher?.teacher_type}</p>
+                                <p>状态：{teacher?.teacher_status}</p>
+                                <p>创建时间：{new Date(Number(teacher?.create_time)).toLocaleString()}</p>
+                            </section>
+                            <section className="database-content-data-item-remark">
+                                备注：{teacher?.teacher_remark ? teacher?.teacher_remark : "无"}
+                            </section>
+                        </div>
+                        <button className='database-content-edit btn-blue'>编辑</button>
+                    </div>
+                </section>
                 {
                     students.length > 0 ?
                         students.map(student => {

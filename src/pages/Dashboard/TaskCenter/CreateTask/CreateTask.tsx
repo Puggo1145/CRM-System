@@ -8,7 +8,7 @@ import TaskBasicData from './TaskBasicData/TaskBasicData'
 
 import useUrl from '../../../../store/urls'
 
-import { usePrompt } from '../../../../components/Prompt/PromptContext'
+import { usePrompt } from '../../../../components/prompts/PromptContext'
 
 import './CreateTask.css'
 
@@ -76,7 +76,7 @@ export default function CreateTask() {
                 type: 'success',
                 content: "创建成功"
             });
-            setTimeout(() => navigateTo('/dashboard/taskcenter'), 2000);
+            setTimeout(() => navigateTo('/dashboard/taskcenter'), 1000);
         };
     };
 

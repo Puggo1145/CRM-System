@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 
 interface RequestParams {
     url: string;
-    method: "GET" | "POST";
+    method: "GET" | "POST" | "PATCH" | "DELETE";
     data?: any;
     headers?: any;
 };
@@ -32,7 +32,7 @@ const makeRequest = async (params: RequestParams): Promise<AxiosResponse | resEr
         } else {
             return {
                 status: 500,
-                error: "Something went wrong"
+                error: "服务器错误，请联系管理员"
             };
         }
     }

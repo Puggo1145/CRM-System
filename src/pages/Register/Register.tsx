@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import { usePrompt } from '../../components/Prompt/PromptContext';
+import { usePrompt } from '../../components/prompts/PromptContext';
 
 import useUrl from '../../store/urls';
 import useUser from '../../store/user';

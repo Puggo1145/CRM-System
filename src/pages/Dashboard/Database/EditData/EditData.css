@@ -1,0 +1,29 @@
+.editData-wrapper {
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 800px;
+  width: 100%;
+}
+.editData-wrapper header {
+  display: flex;
+}
+.editData-wrapper header img {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+.editData-wrapper .editData-content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+.editData-wrapper .editData-content .editData-content-item {
+  display: flex;
+}
+.editData-wrapper .editData-content .editData-content-item span {
+  font-size: 12px;
+  width: 80px;
+}

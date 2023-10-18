@@ -17,6 +17,7 @@ import Database from './pages/Dashboard/Database/Database'
 import SchoolData from './pages/Dashboard/Database/SchoolData/SchoolData'
 import TeacherData from './pages/Dashboard/Database/TeacherData/TeacherData'
 import StudentData from './pages/Dashboard/Database/StudentData/StudentData'
+import EditData from './pages/Dashboard/Database/EditData/EditData'
 
 import ErrorPage from './pages/ErrorPage/ErrorPage'
 
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
               {
                 path: ':schoolId/:teacherId',
                 element: <StudentData />,
+              },
+              {
+                path: 'edit',
+                element: <EditData />,
               }
             ]
           }
