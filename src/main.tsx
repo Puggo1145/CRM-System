@@ -19,6 +19,8 @@ import TeacherData from './pages/Dashboard/Database/TeacherData/TeacherData'
 import StudentData from './pages/Dashboard/Database/StudentData/StudentData'
 import EditData from './pages/Dashboard/Database/EditData/EditData'
 
+import Mytask from './pages/Dashboard/MyTask/Mytask'
+
 import ErrorPage from './pages/ErrorPage/ErrorPage'
 
 import './index.css'
@@ -82,6 +84,11 @@ const router = createBrowserRouter([
                 element: <EditData />,
               }
             ]
+          },
+
+          {
+            path: 'mytask',
+            element: <Mytask />,
           }
         ]
       }

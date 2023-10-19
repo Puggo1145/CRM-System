@@ -32,18 +32,14 @@
                         font-size: 20px !important;
                     }
 
-                    .database-content-data-father-basicInfo {
-                        display: flex;
-                        flex-direction: column;
-                        gap: 8px;
-                    }
                 }
             }
 
             .database-content-data-item {
                 cursor: pointer;
                 display: flex;
-                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
                 gap: 8px;
                 padding: 16px;
                 border-bottom: 1px solid #ddd;
@@ -71,6 +67,23 @@
 
                 .database-content-data-item-remark {
                     font-size: 14px;
+                }
+
+                .database-content-data-father-basicInfo {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+                }
+                
+                .database-content-data-item-fns {
+                    display: flex;
+                    column-gap: 16px;
+                    
+                    button {
+                        height: 28px;
+                        width: 56px;
+                        padding: 0;
+                    }
                 }
             }
 

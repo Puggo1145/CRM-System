@@ -43,7 +43,7 @@ function App() {
       role: loginRes.data.data.role
     });
     
-    navigate('/dashboard/workbench', { replace: true });
+    navigate(loginRes.data.data.role === 'admin' ? '/dashboard/workbench' : '/dashboard/mytask', { replace: true });
 
   };
 

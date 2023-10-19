@@ -58,7 +58,7 @@ export default function Login() {
           role: loginRes.data.data.role
         });
 
-        navigate('/dashboard/workbench');
+        navigate(loginRes.data.data.role === 'admin' ? '/dashboard/workbench' : '/dashboard/mytask', { replace: true });
       }
     } catch (err: any) {
       if (err.response.status === 401) {

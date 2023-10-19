@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { createPortal } from 'react-dom'
 import PubSub from 'pubsub-js';
 import makeRequest from '../../../../utils/makeRequest';
+import { useNavigate } from 'react-router-dom';
 
 import BackgroundMask from '../../../../components/BackgroundMask/BackgroundMask';
 
@@ -46,6 +47,7 @@ interface renderFormType {
 export default function CreateData() {
 
     const { showPrompt } = usePrompt();
+
     const backendUrl = useUrl(state => state.backendUrl);
 
     const [doubleCheck, setDoubleCheck] = useState<boolean>(false);

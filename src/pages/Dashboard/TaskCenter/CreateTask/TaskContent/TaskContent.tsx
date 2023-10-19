@@ -40,10 +40,13 @@ export default function TaskContent(
     ]);
     const [currentTeacherId, setCurrentTeacherId] = useState<string>('');
     // 状态筛选条件
-    const [status, setStatus] = useState<string[]>([
-        "全部", "未对接", "对接中", "对接成功", "对接失败"
+    const [teacherStatus, setTeacherStatus] = useState<string[]>([
+        "未对接", "对接成功", "对接失败"
     ]);
-    const [currentStatus, setCurrentStatus] = useState<string>('');
+    const [studentStatus, setStudentStatus] = useState<string[]>([
+        '未对接', '已联系', '未报名', '预报名', '全费报名', '已入学'
+    ]);
+    const [currentStatus, setCurrentStatus] = useState<string>('未对接');
 
 
     // 查询结果 /////////////////////////////////////////////////////////////
@@ -99,7 +102,7 @@ export default function TaskContent(
             const query_taskTarget = currentTaskTarget === '班主任' ? 'allTeachers' : 'allStudents'
             const query_school_id = currentSchoolId ? `school_id=${currentSchoolId}` : '';
             const query_teacher_id = currentTeacherId ? `teacher_id=${currentTeacherId}` : '';
-            const query_status = currentStatus === '全部' ? '' : `status=${currentStatus}`;
+            const query_status = `status=${currentStatus}`
 
             const res = await makeRequest({
                 method: 'GET',
@@ -166,7 +169,13 @@ export default function TaskContent(
                             <label>状态</label>
                             <select className="form-select" name="status" onChange={(event) => setCurrentStatus(event.target.value)}>
                                 {
-                                    status.map((item, index) => {
+                                    currentTaskTarget === '班主任' ?
+                                    teacherStatus.map((item, index) => {
+                                        return (
+                                            <option value={item} key={`${item}-${index}`}>{item}</option>
+                                        )
+                                    }) : 
+                                    studentStatus.map((item, index) => {
                                         return (
                                             <option value={item} key={`${item}-${index}`}>{item}</option>
                                         )
@@ -186,6 +195,7 @@ export default function TaskContent(
                             <span>状态</span>
                         </div>
                         {
+                            targets.length > 0 ?
                             targets.map(item => {
                                 return (
                                     <div
@@ -197,7 +207,12 @@ export default function TaskContent(
                                         <span>{item.status}</span>
                                     </div>
                                 )
-                            })
+                            }):
+                            <span style={{
+                                textAlign: 'center',
+                                fontSize: '14px',
+                                padding: '16px'
+                            }}>当前筛选条件下无结果</span>
                         }
                     </div>
                 }

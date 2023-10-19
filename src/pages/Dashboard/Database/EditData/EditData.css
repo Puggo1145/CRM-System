@@ -22,8 +22,15 @@
 }
 .editData-wrapper .editData-content .editData-content-item {
   display: flex;
+  align-items: center;
 }
 .editData-wrapper .editData-content .editData-content-item span {
   font-size: 12px;
   width: 80px;
+}
+.editData-wrapper .editData-fns {
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 16px;
+  margin-top: 16px;
 }

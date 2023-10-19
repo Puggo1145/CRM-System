@@ -14,7 +14,7 @@ interface checkProps {
 }
 interface PromptContextType {
     showPrompt: (info: PromptProps) => void;
-    showCheck: (content: string, setDoubleCheck?: (bool: boolean) => void) => void
+    showCheck: (content: string) => Promise<boolean>
 }
 
 const PromptContext = createContext<PromptContextType | null>(null);
@@ -32,15 +32,19 @@ export function PromptProvider({ children }: { children: ReactNode }) {
 
     const [isCheckShow, setIsCheckShow] = useState<boolean>(false); // 控制 context 内部的 CheckPrompt 组件是否显示
     const [checkProps, setCheckProps] = useState<checkProps>(); // checkPrompt 所需的 props
-    const showCheck = (content: string, setDoubleCheck?: (bool: boolean) => void) => { // 调用 checkPrompt
-        setCheckProps({
-            content,
-            onClick: (bool: boolean) => {
-                setIsCheckShow(false);
-                setDoubleCheck && setDoubleCheck(bool);
-            }
+    const showCheck = (content: string): Promise<boolean> => { // 调用 checkPrompt
+        return new Promise((resolve) => {
+            setCheckProps({
+                content,
+                onClick: (bool: boolean) => {
+                    setIsCheckShow(false);
+                    
+                    resolve(bool);
+                }
+            });
+
+            setIsCheckShow(true);
         });
-        setIsCheckShow(true);
     };
 
     return (

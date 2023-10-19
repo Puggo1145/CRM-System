@@ -19,7 +19,8 @@ interface Link {
     name: string,
     path: string,
     icon: string[],
-    active: boolean
+    active: boolean,
+    authority: string[]
 }
 
 export default function Sidebar() {
@@ -30,9 +31,10 @@ export default function Sidebar() {
     const [userInfo, setUserInfo] = useUser(state => [state.userInfo, state.setUserInfo]);
 
     const [links, setLinks] = useState<Link[]>([
-        {name: '工作台', path: '/dashboard/workbench', icon: [workbenchIcon, workbenchActivateIcon], active: true},
-        {name: '任务中心', path: '/dashboard/taskcenter', icon: [taskCenterIcon, taskCenterActivateIcon], active: false},
-        {name: '数据库', path: '/dashboard/database', icon: [databaseIcon, databaseActivateIcon], active: false},
+        {name: '工作台', path: '/dashboard/workbench', icon: [workbenchIcon, workbenchActivateIcon], active: true, authority: ['admin']},
+        {name: '任务中心', path: '/dashboard/taskcenter', icon: [taskCenterIcon, taskCenterActivateIcon], active: false,  authority: ['admin']},
+        {name: '数据库', path: '/dashboard/database', icon: [databaseIcon, databaseActivateIcon], active: false, authority: ['admin']},
+        {name: '我的任务', path: '/dashboard/mytask', icon: [taskCenterIcon, taskCenterActivateIcon], active: false,  authority: ['employee']}
     ]);
     const [isUserSettingShow, setIsUserSettingShow] = useState<boolean>(false);
 
@@ -70,7 +72,7 @@ export default function Sidebar() {
             </span>
             <section className='sidebar-links'>
                 {
-                    links.map(item => {
+                    links.filter(item => item.authority.includes(userInfo.role!)).map(item => {
                         return (
                             <Link 
                                 key={item.name}
@@ -80,7 +82,7 @@ export default function Sidebar() {
                                 onClick={() => handleLinkClick(item.path)}
                             />
                         )
-                    })
+                    }) 
                 }
             </section>
             <section className='sidebar-user'>

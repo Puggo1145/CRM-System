@@ -26,15 +26,11 @@
 .database-wrapper .database-content .database-content-data .database-content-data-father .database-content-data-item h3 {
   font-size: 20px !important;
 }
-.database-wrapper .database-content .database-content-data .database-content-data-father .database-content-data-item .database-content-data-father-basicInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
 .database-wrapper .database-content .database-content-data .database-content-data-item {
   cursor: pointer;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   gap: 8px;
   padding: 16px;
   border-bottom: 1px solid #ddd;
@@ -58,6 +54,20 @@
 }
 .database-wrapper .database-content .database-content-data .database-content-data-item .database-content-data-item-remark {
   font-size: 14px;
+}
+.database-wrapper .database-content .database-content-data .database-content-data-item .database-content-data-father-basicInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.database-wrapper .database-content .database-content-data .database-content-data-item .database-content-data-item-fns {
+  display: flex;
+  column-gap: 16px;
+}
+.database-wrapper .database-content .database-content-data .database-content-data-item .database-content-data-item-fns button {
+  height: 28px;
+  width: 56px;
+  padding: 0;
 }
 .database-wrapper .database-content .database-content-data .database-content-data-noData {
   text-align: center;
