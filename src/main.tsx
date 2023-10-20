@@ -20,6 +20,7 @@ import StudentData from './pages/Dashboard/Database/StudentData/StudentData'
 import EditData from './pages/Dashboard/Database/EditData/EditData'
 
 import Mytask from './pages/Dashboard/MyTask/Mytask'
+import EmployeeTaskDetail from './pages/Dashboard/MyTask/EmployeeTaskDetail/EmployeeTaskDetail'
 
 import ErrorPage from './pages/ErrorPage/ErrorPage'
 
@@ -89,6 +90,10 @@ const router = createBrowserRouter([
           {
             path: 'mytask',
             element: <Mytask />,
+          },
+          {
+            path: 'mytask/:id',
+            element: <EmployeeTaskDetail />
           }
         ]
       }

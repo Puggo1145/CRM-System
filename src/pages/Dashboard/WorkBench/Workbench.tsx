@@ -5,6 +5,8 @@ import WorkTrend from './WorkTrend/WorkTrend';
 import MyCustomer from './MyCustomer/MyCustomer';
 import TaskToday from './TaskToday/TaskToday';
 
+import useCurrentTargetView from '../../../store/currentTargetView';
+
 import './Workbench.css'
 
 interface generalDataType {
@@ -16,7 +18,7 @@ interface generalDataType {
 export default function Workbench() {
 
   const [updatedAt, setUpdatedAt] = useState<string>('2023-09-22 12:00:00')
-  const [currentObj, setCurrentObj] = useState<number>(0) // 0: 班主任， 1: 学生
+  const [currentTargetView, setCurrentTargetView] = useCurrentTargetView(state => [state.currentTargetView, state.setCurrentTargetView]);
 
   const [generalData, setGeneralData] = useState<generalDataType[]>([
     { title: '今日新增招生', value: 24, comparation: 0.12 },
@@ -25,8 +27,8 @@ export default function Workbench() {
     { title: '本月目标', value: 120 },
   ]);
 
-  const handleObjSwitch = (objName: number) => {
-    setCurrentObj(objName);
+  const handleObjSwitch = (objName: 'teacher' | 'student') => {
+    setCurrentTargetView(objName);
   }
 
   return (
@@ -39,8 +41,8 @@ export default function Workbench() {
         <span className='workbench-header-switchObj'>
           <span className='workbench-header-desc'>切换查看对象：</span>
           <ul className='workbench-header-switcher'>
-            <li className={currentObj === 0 ? 'workbench-activeObj' : ''} onClick={() => handleObjSwitch(0)}>班主任</li>
-            <li className={currentObj === 1 ? 'workbench-activeObj' : ''} onClick={() => handleObjSwitch(1)}>学生</li>
+            <li className={currentTargetView === 'teacher' ? 'workbench-activeObj' : ''} onClick={() => handleObjSwitch('teacher')}>班主任</li>
+            <li className={currentTargetView === 'student' ? 'workbench-activeObj' : ''} onClick={() => handleObjSwitch('student')}>学生</li>
           </ul>
         </span>
       </header>

@@ -1,0 +1,9 @@
+.mytask-content {
+  padding: 0;
+}
+.mytask-content .mytask-filters {
+  padding: 16px;
+}
+.mytask-content .mytask-filters span {
+  font-size: 14px;
+}

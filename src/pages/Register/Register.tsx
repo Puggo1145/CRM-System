@@ -20,6 +20,7 @@ export default function Register() {
     const usernameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
     const doubleCheckPasswordRef = useRef<HTMLInputElement>(null);
+    const registerCodeRef = useRef<HTMLInputElement>(null);
 
     const backToLogin = () => {
         navigateTo('/login');
@@ -34,10 +35,11 @@ export default function Register() {
             doubleCheckPassword: doubleCheckPasswordRef.current!.value
         };
 
-        if (username.length === 0 || password.length === 0 || doubleCheckPassword.length === 0) {
+        if (username.length === 0 || password.length === 0 || doubleCheckPassword.length === 0 || registerCodeRef.current!.value.length === 0) {
             usernameRef.current!.placeholder = username.length === 0 ? '用户名不能为空' : '请输入用户名';
             passwordRef.current!.placeholder = password.length === 0 ? '密码不能为空' : '请输入密码';
             doubleCheckPasswordRef.current!.placeholder = doubleCheckPassword.length === 0 ? '密码不能为空' : '请再次输入密码';
+            registerCodeRef.current!.placeholder = registerCodeRef.current!.value.length === 0 ? '注册码不能为空' : '请输入注册码';
 
             return;
         };
@@ -46,6 +48,18 @@ export default function Register() {
             doubleCheckPasswordRef.current!.value = '';
             passwordRef.current!.placeholder = '两次密码不一致';
             doubleCheckPasswordRef.current!.placeholder = '两次密码不一致';
+
+            return;
+        };
+
+        if (registerCodeRef.current!.value !== 'ydjykjrgstcode') {
+            registerCodeRef.current!.value = '';
+            registerCodeRef.current!.placeholder = '注册码错误';
+
+            showPrompt({
+                content: '注册码错误',
+                type: 'error'
+            });
 
             return;
         };
@@ -88,6 +102,7 @@ export default function Register() {
                     <input ref={usernameRef} type="text" className='register-input' placeholder='请输入真实姓名' />
                     <input ref={passwordRef} type="password" className='register-input' placeholder='请输入密码' />
                     <input ref={doubleCheckPasswordRef} type="password" className='register-input' placeholder='请再次输入密码' />
+                    <input ref={registerCodeRef} type="password" className='register-input' placeholder='请输入注册码' />
                 </section>
             </form>
             <button className='board-button' type='button' onClick={(event) => handleSubmit(event)}>注册</button>

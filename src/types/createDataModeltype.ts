@@ -90,3 +90,7 @@ export interface studentDataType {
     school_id: string
     teacher_id: string
 }
+
+export interface taskTargetObjType {
+    taskTargetObj_id: string
+}

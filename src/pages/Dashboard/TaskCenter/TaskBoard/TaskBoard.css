@@ -75,3 +75,8 @@
   line-height: 32px;
   background-color: #fff;
 }
+.boardList-noData {
+  text-align: center;
+  display: block;
+  padding: 16px;
+}

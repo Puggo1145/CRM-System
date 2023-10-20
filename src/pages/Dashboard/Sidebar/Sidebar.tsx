@@ -67,8 +67,8 @@ export default function Sidebar() {
     return (
         <nav className='sidebar-wrapper'>
             <span className='sidebar-texts'>
-                <h1>樾达教育</h1>
-                <p>招生信息管理系统</p>
+                <h1>樾达教育科技</h1>
+                <p>信息管理系统</p>
             </span>
             <section className='sidebar-links'>
                 {

@@ -1,5 +1,8 @@
 import { useState } from 'react'
 
+import useCurrentTargetView from '../../../../store/currentTargetView';
+import useSelects from '../../../../store/selects';
+
 import './MyCustomer.css'
 
 interface customerDataType {
@@ -12,6 +15,8 @@ interface customerDataType {
 }
 
 export default function MyCustomer() {
+
+    const currentTargetView = useCurrentTargetView(state => state.currentTargetView);
 
     const [customerData, setCustomerData] = useState<customerDataType[]>([
         { _id: '1', student: '学生A', teacher: '班主任A', employee: '员工A', status: '对接成功', createdAt: '2021-09-22' },
@@ -40,14 +45,6 @@ export default function MyCustomer() {
                         <option value="all">全部</option>
                         <option value="teacher1">班主任A</option>
                         <option value="teacher2">班主任B</option>
-                    </select>
-                </span>
-                <span className='myCustomer-filter-item'>
-                    <h6>按对接员工筛选</h6>
-                    <select name="filter-employee">
-                        <option value="all">全部</option>
-                        <option value="employee1">员工A</option>
-                        <option value="employee2">员工B</option>
                     </select>
                 </span>
                 <span className='myCustomer-filter-item'>

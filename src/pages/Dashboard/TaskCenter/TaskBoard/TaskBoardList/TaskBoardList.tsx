@@ -38,6 +38,7 @@ export default function TaskBoardList({ keys, data }: { keys: string[], data: Pa
                 </li>
                 <div className='boardList-content'>
                     {
+                        data.length === 0 ? <span className='boardList-noData'>暂无任务</span> :
                         data.map((item, index) => {
                             return (
                                 <Link key={item.task_id} className='boardList-content-item' to={`/dashboard/taskcenter/${item.task_id}`}>

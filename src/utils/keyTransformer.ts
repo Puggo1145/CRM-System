@@ -37,6 +37,12 @@ const keyDict: Record<string, keyDictValue> = {
     student_target_school_type: { name: '目标学校类型', formType: 'select', selectOptions: ['城院', '公办中职', '普高', '其他学校'] },
     student_status: { name: '状态', formType: 'select', selectOptions: ['未对接', '对接中', '已联系', '未报名', '预报名', '全费报名', '已入学'] },
     student_remark: { name: '备注', formType: 'textarea' },
+
+    task_name: { name: '任务名称', formType: 'input' },
+    task_target: { name: '任务目标', formType: 'input' },
+    deadline: { name: '截止日期', formType: 'date' },
+    task_remark: { name: '备注', formType: 'textarea' },
+    status: { name: '状态', formType: 'select' },
 };
 
 export default function keyTransformer(key: string): keyDictValue {
