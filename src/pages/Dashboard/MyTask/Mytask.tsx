@@ -32,7 +32,6 @@ export default function Mytask() {
       });
 
       if (!('error' in tasksRes)) {
-        console.log(tasksRes.data.data);
         const tasks = tasksRes.data.data as TaskType[];
         const transformedTasks = tasks.map(task => {
           return {

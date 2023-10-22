@@ -84,8 +84,6 @@ export default function TaskDetail() {
         const result = await showCheck("确定要删除吗？此操作不可撤销，且被删除的对象状态都会被重置为'未对接'");
         if (!result) return;
 
-        console.log(taskTargetObj.map(item => item.taskTargetObj_id));
-
         const res = await makeRequest({
             method: 'DELETE',
             url: `${backendUrl}/api/v1/tasks/${task.task_id}`,

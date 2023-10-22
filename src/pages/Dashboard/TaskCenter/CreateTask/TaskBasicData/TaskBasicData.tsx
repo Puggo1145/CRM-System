@@ -5,8 +5,6 @@ import useEmployee from '../../../../../store/employee';
 export default function TaskBasicData() {
 
     const employeeInfo = useEmployee(state => state.employeeInfo);
-    console.log(employeeInfo);
-    
 
     return (
         <div className='taskBasicData-wrapper board-component'>

@@ -72,8 +72,6 @@ export default function TaskBoard() {
             deadline: task.deadline
           }
         });
-        console.log(transformedTasks);
-
 
         setData(transformedTasks);
       }

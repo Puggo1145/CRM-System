@@ -279,7 +279,6 @@ export default function CreateData() {
 
         // 发送请求
         if (!allFieldsNotNull) return
-        console.log(newFormData);
 
         const res = await makeRequest({
             method: 'POST',

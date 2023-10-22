@@ -74,7 +74,6 @@ export default function employeeTaskDetail() {
         deadline: task.deadline,
       });
       setTaskTargetObjs(res.data.data.taskTargetObjs);
-      console.log(res.data.data.taskTargetObjs);
 
     } else {
       showPrompt({

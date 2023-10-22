@@ -33,8 +33,6 @@ export default function StudentData() {
             });
 
             if (!('error' in studentsRes)) {
-                console.log(studentsRes.data.data.students);
-
                 setStudents(studentsRes.data.data.students);
             };
 
