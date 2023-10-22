@@ -1,11 +1,19 @@
-.mytask-content {
-    padding: 0;
+.mytask-wrapper {
+    .mytask-content {
+        padding: 0;
 
-    .mytask-filters {
-        padding: 16px;
+        .mytask-filters {
+            display: flex;
+            column-gap: 16px;
+            padding: 16px;
 
-        span {
-            font-size: 14px;
+            span {
+                font-size: 14px;
+            }
         }
+    }
+
+    .boardList {
+        height: calc(100vh - 158px);
     }
 }

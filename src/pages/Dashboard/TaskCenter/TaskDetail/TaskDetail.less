@@ -42,26 +42,41 @@
         }
 
         .taskDetail-content-taskTargetObjs {
-            overflow-y: scroll;
             flex: 1;
             height: 200px;
             display: flex;
             flex-direction: column;
             border-radius: 4px;
             border: 1px solid #ddd;
-            
-            div {
+
+            .taskDetail-content-item-headerRow {
                 display: flex;
                 padding: 12px;
-                border-bottom: 1px solid #ddd;
+                background-color: #f5f5f5;
+                font-size: 14px;
 
                 span {
-                    flex: 0.5; 
+                    flex: 0.5;
+                }
+            }
+
+            .taskDetail-content-items {
+                overflow-y: scroll;
+                height: 100%;
+
+                .taskDetail-content-item-item {
+                    display: flex;
+                    padding: 12px;
+                    border-bottom: 1px solid #ddd;
+    
+                    span {
+                        flex: 0.5;
+                    }
                 }
             }
         }
     }
-    
+
     .taskDetail-fns {
         display: flex;
         column-gap: 16px;

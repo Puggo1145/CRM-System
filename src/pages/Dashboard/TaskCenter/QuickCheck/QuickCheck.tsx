@@ -1,25 +1,47 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import makeRequest from "../../../../utils/makeRequest"
+
+import useUrl from "../../../../store/urls"
 
 import BoardList from "../../../../components/BoardList/BoardList"
+
+import { TaskType } from "../TaskBoard/TaskBoard"
 
 import './QuickCheck.css'
 
 interface QuickCheckType {
-  _id: string
-  employee: string
+  [key: string]: string
+  task_id: string
+  username: string
   currentNum: string
 }
 
 export default function QuickCheck() {
 
-  const [keys, setKeys] = useState<string[]>(['对接员工', '完成情况'])
+  const backendUrl = useUrl(state => state.backendUrl);
+  useEffect(() => {
+    (async () => {
+      const res = await makeRequest({
+        method: 'GET',
+        url: `${backendUrl}/api/v1/data-analysis/quick-check`
+      });
+
+      if (!('error' in res)) {
+        setData((res.data.data.map((item: { task_id: string; username: string; finishedTaskTarget: number; taskTargetObj_num: number }) => {
+          return {
+            task_id: item.task_id,
+            username: item.username,
+            currentNum: `${item.finishedTaskTarget}/${item.taskTargetObj_num}`
+          }
+        }
+        )));
+      }
+    })();
+  }, []);
+
+  const [keys] = useState<string[]>(['对接员工', '完成情况'])
   const [data, setData] = useState<QuickCheckType[]>([
-    { _id: '1', employee: '员工A', currentNum: '8/10' },
-    { _id: '2', employee: '员工B', currentNum: '5/10' },
-    { _id: '3', employee: '员工C', currentNum: '10/10' },
-    { _id: '4', employee: '员工D', currentNum: '10/10' },
-    { _id: '5', employee: '员工E', currentNum: '10/10' },
-    { _id: '6', employee: '员工E', currentNum: '10/10' },
+    
   ])
 
   return (

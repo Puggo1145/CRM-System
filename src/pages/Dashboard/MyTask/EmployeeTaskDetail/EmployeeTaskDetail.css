@@ -66,6 +66,7 @@
   background-color: #f5f5f5;
 }
 .employeeTaskDetail-wrapper .employeeTaskDetail-content-taskTargets-wrapper .employeeTaskDetail-content-taskTargets .employeeTaskDetail-content-items-wrapper .employeeTaskDetail-content-items .employeeTaskDetail-content-item {
+  white-space: nowrap;
   width: 100px;
   display: flex;
   align-items: center;

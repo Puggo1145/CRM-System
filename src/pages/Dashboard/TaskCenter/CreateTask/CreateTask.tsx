@@ -64,6 +64,13 @@ export default function CreateTask() {
                 content: '任务备注长度不能超过5000字',
             });
         };
+        // 日期检查
+        if (Number(basicData.deadline) < Date.now()) {
+            return showPrompt({
+                type: 'error',
+                content: '截止时间不能早于当前时间',
+            });
+        };
 
         const res = await makeRequest({
             method: 'POST',

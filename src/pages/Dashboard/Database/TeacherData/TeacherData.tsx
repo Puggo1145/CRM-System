@@ -48,7 +48,7 @@ export default function TeacherData() {
                 setSchool(schoolRes.data.data.schools[0]);
             };
         })();
-    }, [location.search]);
+    }, [location.search, location.pathname]);
 
     const handleEdit = () => {
         passEditData({ target: 'school', data: school! })

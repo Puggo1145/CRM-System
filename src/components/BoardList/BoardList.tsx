@@ -1,28 +1,10 @@
-import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
+
+import { taskStatusColor } from '../../utils/handleStatusColor';
 
 import './BoardList.css'
 
-import { TaskType } from '../../pages/Dashboard/TaskCenter/TaskBoard/TaskBoard';
-
 export default function BoardList({ keys, data }: { keys: string[], data: Record<string, string | number>[] }) {
-
-    const handleStatusColor = (status: string) => {
-        switch (status) {
-            case '待确认':
-                return '#6C6C6C'
-            case '进行中':
-                return '#FF8A00'
-            case '待审核':
-                return '#3963EB'
-            case '已完成':
-                return '#30CB5B'
-            case '已逾期':
-                return '#DE1F1F'
-            default:
-                return ''
-        }
-    };
 
     return (
         <>
@@ -48,7 +30,7 @@ export default function BoardList({ keys, data }: { keys: string[], data: Record
                                                 return (
                                                     <span
                                                         key={`item-${index}-${idx}`}
-                                                        style={key === 'status' ? { color: handleStatusColor(value as string) } : {}}
+                                                        style={key === 'status' ? { color: taskStatusColor(value as string) } : {}}
                                                     >
                                                         {
                                                             key === 'create_time' || key === 'deadline' ? 

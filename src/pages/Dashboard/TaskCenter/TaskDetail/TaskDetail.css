@@ -37,7 +37,6 @@
   font-size: 14px;
 }
 .taskDetail-wrapper .taskDetail-content .taskDetail-content-taskTargetObjs {
-  overflow-y: scroll;
   flex: 1;
   height: 200px;
   display: flex;
@@ -45,12 +44,25 @@
   border-radius: 4px;
   border: 1px solid #ddd;
 }
-.taskDetail-wrapper .taskDetail-content .taskDetail-content-taskTargetObjs div {
+.taskDetail-wrapper .taskDetail-content .taskDetail-content-taskTargetObjs .taskDetail-content-item-headerRow {
+  display: flex;
+  padding: 12px;
+  background-color: #f5f5f5;
+  font-size: 14px;
+}
+.taskDetail-wrapper .taskDetail-content .taskDetail-content-taskTargetObjs .taskDetail-content-item-headerRow span {
+  flex: 0.5;
+}
+.taskDetail-wrapper .taskDetail-content .taskDetail-content-taskTargetObjs .taskDetail-content-items {
+  overflow-y: scroll;
+  height: 100%;
+}
+.taskDetail-wrapper .taskDetail-content .taskDetail-content-taskTargetObjs .taskDetail-content-items .taskDetail-content-item-item {
   display: flex;
   padding: 12px;
   border-bottom: 1px solid #ddd;
 }
-.taskDetail-wrapper .taskDetail-content .taskDetail-content-taskTargetObjs div span {
+.taskDetail-wrapper .taskDetail-content .taskDetail-content-taskTargetObjs .taskDetail-content-items .taskDetail-content-item-item span {
   flex: 0.5;
 }
 .taskDetail-wrapper .taskDetail-fns {

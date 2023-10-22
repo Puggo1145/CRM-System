@@ -1,0 +1,56 @@
+.taskTargetDetail-wrapper {
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0;
+  max-width: 800px;
+  width: 80%;
+}
+.taskTargetDetail-wrapper header {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+}
+.taskTargetDetail-wrapper header h3 {
+  font-size: 16px;
+  font-weight: 700;
+}
+.taskTargetDetail-wrapper header a {
+  cursor: pointer;
+}
+.taskTargetDetail-wrapper header a img {
+  width: 16px;
+  height: 16px;
+}
+.taskTargetDetail-wrapper .taskTargetDetail-content form {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  row-gap: 16px;
+  margin: 0 auto;
+  margin-bottom: 16px;
+}
+.taskTargetDetail-wrapper .taskTargetDetail-content form .taskTargetDetail-content-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.taskTargetDetail-wrapper .taskTargetDetail-content form .taskTargetDetail-content-item span:first-child {
+  width: 100px;
+  font-size: 14px;
+}
+.taskTargetDetail-wrapper .taskTargetDetail-content form .taskTargetDetail-content-item span:last-child {
+  flex: 1;
+  font-size: 14px;
+}
+.taskTargetDetail-wrapper .taskTargetDetail-content form .taskTargetDetail-content-item textarea {
+  height: 150px;
+}
+.taskTargetDetail-wrapper .taskTargetDetail-fns {
+  display: flex;
+  justify-content: end;
+  padding: 16px;
+  border-top: 1px solid #ddd;
+}

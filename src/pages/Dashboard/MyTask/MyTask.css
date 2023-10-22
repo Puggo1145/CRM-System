@@ -1,9 +1,14 @@
-.mytask-content {
+.mytask-wrapper .mytask-content {
   padding: 0;
 }
-.mytask-content .mytask-filters {
+.mytask-wrapper .mytask-content .mytask-filters {
+  display: flex;
+  column-gap: 16px;
   padding: 16px;
 }
-.mytask-content .mytask-filters span {
+.mytask-wrapper .mytask-content .mytask-filters span {
   font-size: 14px;
+}
+.mytask-wrapper .boardList {
+  height: calc(100vh - 158px);
 }

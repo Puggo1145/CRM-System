@@ -8,6 +8,8 @@ import useUrl from "../../../../store/urls";
 import useEmployee from "../../../../store/employee";
 import { usePrompt } from "../../../../components/prompts/PromptContext";
 
+import { studentStatusColor, taskStatusColor, teacherStatusColor } from "../../../../utils/handleStatusColor";
+
 import BackgroundMask from "../../../../components/BackgroundMask/BackgroundMask";
 
 import { TaskType } from "../TaskBoard/TaskBoard";
@@ -99,7 +101,7 @@ export default function TaskDetail() {
                 content: '删除成功',
                 type: 'success'
             });
-            
+
             window.location.reload();
             navigateTo('/dashboard/taskcenter');
         } else {
@@ -136,6 +138,34 @@ export default function TaskDetail() {
         if (!('error' in res)) {
             showPrompt({
                 content: '更新成功',
+                type: 'success'
+            });
+            window.location.reload();
+        } else {
+            showPrompt({
+                content: `错误：${res.error}`,
+                type: 'error'
+            });
+        };
+    };
+
+    const handleVerification = async (action: 'pass' | 'redo') => {
+        const result = await showCheck(`确定要${action === 'pass' ? '通过审核' : '打回'}吗？`);
+        if (!result) return;
+
+        const targetStatus = action === 'pass' ? '已完成' : '进行中';
+
+        const res = await makeRequest({
+            method: 'PATCH',
+            url: `${backendUrl}/api/v1/tasks/${task.task_id}`,
+            data: {
+                fieldsOnUpdate: { status: targetStatus }
+            }
+        });
+
+        if (!('error' in res)) {
+            showPrompt({
+                content: `${action === 'pass' ? '审核' : '打回'}成功`,
                 type: 'success'
             });
             window.location.reload();
@@ -197,7 +227,7 @@ export default function TaskDetail() {
                     </li>
                     <li className="taskDetail-content-item">
                         <h6 className="taskDetail-content-item-key">状态：</h6>
-                        <span className="taskDetail-content-item-value">{task.status}</span>
+                        <span className="taskDetail-content-item-value" style={{ color: taskStatusColor(task.status as string) }}>{task.status}</span>
                     </li>
                     <li className="taskDetail-content-item">
                         <h6 className="taskDetail-content-item-key" style={{ color: isEditMode ? "#4362e2" : '' }}>截止时间：</h6>
@@ -211,19 +241,33 @@ export default function TaskDetail() {
                     <li className="taskDetail-content-item">
                         <h6 className="taskDetail-content-item-key">任务对象</h6>
                         <div className="taskDetail-content-item-value  taskDetail-content-taskTargetObjs">
+                            <div className="taskDetail-content-item-headerRow">
+                                <span>姓名</span>
+                                <span>状态</span>
+                            </div>
+                            <ul className="taskDetail-content-items">
+                                {
+                                    taskTargetObj!.map(item => {
+                                        const task_target = task.task_target === '班主任' ? 'teacher' : 'student';
 
-                            {
-                                taskTargetObj!.map(item => {
-                                    const task_target = task.task_target === '班主任' ? 'teacher' : 'student';
+                                        return (
+                                            <li key={item[`${task_target}_id`]} className="taskDetail-content-item-item">
+                                                <span>{item[`${task_target}_name`]}</span>
+                                                <span
+                                                    style={{
+                                                        color: task_target === 'teacher' ?
+                                                            teacherStatusColor(item[`${task_target}_status`] as string)
+                                                            :
+                                                            studentStatusColor(item[`${task_target}_status`] as string)
+                                                    }}>
+                                                    {item[`${task_target}_status`]}
+                                                </span>
+                                            </li>
+                                        )
+                                    })
+                                }
+                            </ul>
 
-                                    return (
-                                        <div key={item[`${task_target}_id`]}>
-                                            <span>姓名：{item[`${task_target}_name`]}</span>
-                                            <span>状态：{item[`${task_target}_status`]}</span>
-                                        </div>
-                                    )
-                                })
-                            }
                         </div>
 
                     </li>
@@ -239,6 +283,13 @@ export default function TaskDetail() {
                             <>
                                 <button className="btn-blue" onClick={() => setIsEditMode(!isEditMode)}>编辑</button>
                                 <button className="btn-blue" style={{ backgroundColor: '#DE1F1F' }} onClick={handleTaskDelete}>删除</button>
+                                {
+                                    task.status === '待审核' &&
+                                    <>
+                                        <button className="btn-blue" style={{ backgroundColor: '#2c9e4b' }} onClick={() => handleVerification('pass')}>通过审核</button>
+                                        <button className="btn-blue" style={{ backgroundColor: '#fbc119' }} onClick={() => handleVerification('redo')}>打回</button>
+                                    </>
+                                }
                             </>
 
                     }

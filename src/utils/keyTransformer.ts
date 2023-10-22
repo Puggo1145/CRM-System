@@ -20,7 +20,7 @@ const keyDict: Record<string, keyDictValue> = {
     teacher_class: { name: '毕业班年级', formType: 'input' },
     teacher_phone: { name: '手机号', formType: 'input' },
     teacher_wechat: { name: '微信', formType: 'input' },
-    teacher_type: { name: '类型', formType: 'select', selectOptions: ['A: 合作意向强', 'B: 了解观望考虑合作', 'C: 不支持不合作'] },
+    teacher_type: { name: '类型', formType: 'select', selectOptions: ['未知', 'A: 合作意向强', 'B: 了解观望考虑合作', 'C: 不支持不合作'] },
     teacher_status: { name: '状态', formType: 'select', selectOptions: ['未对接', '对接中', '对接成功', '对接失败']},
     teacher_remark: { name: '备注', formType: 'textarea' },
 
@@ -33,8 +33,8 @@ const keyDict: Record<string, keyDictValue> = {
     student_father_phone: { name: '父亲电话', formType: 'input' },
     student_relative_phone: { name: '亲属电话', formType: 'input' },
     student_wechat: { name: '微信', formType: 'input' },
-    student_type: { name: '类型', formType: 'select', selectOptions: ['A: 就读意向强', 'B: 有意向，比较中', 'C: 了解考虑中', 'D: 非目标客户'] },
-    student_target_school_type: { name: '目标学校类型', formType: 'select', selectOptions: ['城院', '公办中职', '普高', '其他学校'] },
+    student_type: { name: '类型', formType: 'select', selectOptions: ['未知', 'A: 就读意向强', 'B: 有意向，比较中', 'C: 了解考虑中', 'D: 非目标客户'] },
+    student_target_school_type: { name: '目标学校类型', formType: 'select', selectOptions: ['未知', '城院', '公办中职', '普高', '其他学校'] },
     student_status: { name: '状态', formType: 'select', selectOptions: ['未对接', '对接中', '已联系', '未报名', '预报名', '全费报名', '已入学'] },
     student_remark: { name: '备注', formType: 'textarea' },
 

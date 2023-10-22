@@ -58,7 +58,7 @@ export default function Sidebar() {
         setUserInfo({ username: '',  })
 
         // 2. 清除 cookie
-        cookie.remove('jwt');
+        cookie.remove('jwt', { path: '/' });
     
         // 3. 跳转到登录页面
         navigate('/login')

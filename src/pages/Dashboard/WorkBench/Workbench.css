@@ -1,3 +1,18 @@
+.workbench-wrapper::before {
+  content: '开发中，暂不可用';
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  font-weight: 700;
+  color: #111;
+}
+.workbench-wrapper .workbench-header,
+.workbench-wrapper .workbench-content {
+  filter: blur(7px);
+}
 .workbench-header {
   display: flex;
   justify-content: space-between;

@@ -14,6 +14,9 @@ export default function Database() {
 
   const [isCreateDataOpened, setIsCreateDataOpened] = useState<boolean>(false);
 
+  const [search, setSearch] = useState<string>('');
+  const [searchTimeoutId, setSearchTimeoutId] = useState<NodeJS.Timeout | null>(null);
+  
   useEffect(() => {
     const tokenA = PubSub.subscribe('openCreateData', () => {
       setIsCreateDataOpened(!isCreateDataOpened);
@@ -27,6 +30,28 @@ export default function Database() {
       PubSub.unsubscribe(refreshToken);
     };
   }, [isCreateDataOpened]);
+
+  // 拼接 search query
+//   useEffect(() => {
+//     if (!search) return;
+
+//     if (searchTimeoutId) {
+//       clearTimeout(searchTimeoutId);
+//     };
+
+//     const timeoutId = setTimeout(() => {
+//       const searchQuery = search ? `?search=${search}` : '';
+//       navigateTo(`${location.pathname}${location.search}${searchQuery}`, { replace: true });
+//     }, 500);
+
+//     setSearchTimeoutId(timeoutId);
+
+//     return () => {
+//       if (searchTimeoutId) {
+//         clearTimeout(searchTimeoutId);
+//       }
+//     };
+// }, [search, location.pathname]);
 
   // 控制添加数据的弹窗
   const openCreateData = () => {
@@ -63,14 +88,14 @@ export default function Database() {
 
         <section className='database-content-functions'>
           <section className='database-content-filter'>
-            <input type="text" name='database-filter-query' placeholder='请输入要查询的内容' />
+            <input type="text" name='database-filter-query' placeholder='搜索功能暂不可用' onChange={(event) => setSearch(event.target.value)} />
           </section>
           <section className='database-content-crud'>
             <button className='database-content-create btn-blue' onClick={openCreateData}>快速添加</button>
-            <button
+            {/* <button
               className='database-content-edit btn-blue'
               style={{ backgroundColor: '#999' }}
-            >编辑</button>
+            >编辑</button> */}
             {/* <button className='database-content-create btn-blue'>导入数据</button> */}
           </section>
         </section>

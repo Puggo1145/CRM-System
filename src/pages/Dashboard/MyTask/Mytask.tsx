@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import makeRequest from '../../../utils/makeRequest';
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+import { taskStatusColor } from '../../../utils/handleStatusColor';
 
 import useUrl from '../../../store/urls';
+import useSelects from '../../../store/selects';
 
 import { TaskType } from '../TaskCenter/TaskBoard/TaskBoard';
 
@@ -11,14 +14,21 @@ import './MyTask.css';
 export default function Mytask() {
 
   const backendUrl = useUrl(state => state.backendUrl);
+  const { taskStatus } = useSelects(state => state);
+
+  const [currentDuration, setCurrentDuration] = useState<number>(1);
+  const [currentTaskStatus, setCurrentTaskStatus] = useState<string>('请选择');
 
   const [keys, setKeys] = useState<string[]>(['任务目标', '目标数量', '状态', '截止时间']);
   const [data, setData] = useState<Pick<TaskType, 'task_id' | 'task_target' | 'taskTargetObj_num' | 'status' | 'deadline'>[]>([]);
   useEffect(() => {
     (async () => {
+      const dateFilter = `duration=${Date.now() - currentDuration * 24 * 60 * 60 * 1000}`;
+      const taskStatusFilter = currentTaskStatus !== "请选择" ? `status=${currentTaskStatus}` : '';
+
       const tasksRes = await makeRequest({
         method: 'GET',
-        url: `${backendUrl}/api/v1/tasks/employee`,
+        url: `${backendUrl}/api/v1/tasks/employee?${taskStatusFilter}&${dateFilter}`,
       });
 
       if (!('error' in tasksRes)) {
@@ -36,24 +46,7 @@ export default function Mytask() {
         setData(transformedTasks);
       }
     })();
-  }, [])
-
-  const handleStatusColor = (status: string) => {
-    switch (status) {
-      case '待确认':
-        return '#6C6C6C'
-      case '进行中':
-        return '#FF8A00'
-      case '待审核':
-        return '#3963EB'
-      case '已完成':
-        return '#30CB5B'
-      case '已逾期':
-        return '#DE1F1F'
-      default:
-        return ''
-    }
-  };
+  }, [currentTaskStatus, currentDuration])
 
   return (
     <div className='mytask-wrapper'>
@@ -61,15 +54,29 @@ export default function Mytask() {
         <h3>我的任务</h3>
       </header>
       <section className='mytask-content board-component'>
-        <section className='mytask-filters'>
-          <span>按时间筛选：</span>
-          <select name="duration" className='form-select'>
-            <option value="today">今日</option>
-            <option value="week">本周</option>
-            <option value="month">本月</option>
-            <option value="year">今年</option>
-          </select>
-        </section>
+        <ul className='mytask-filters'>
+          <li className='mytask-filters-item'>
+            <span>按时间筛选：</span>
+            <select name="duration" className='form-select' onChange={(event) => setCurrentDuration(Number(event.target.value))}>
+              <option value="1">今日</option>
+              <option value="7">本周</option>
+              <option value="30">本月</option>
+              <option value="356">今年</option>
+            </select>
+          </li>
+          <li className='mytask-filters-item'>
+            <span>按状态筛选：</span>
+            <select name="duration" className='form-select' onChange={(event) => setCurrentTaskStatus(event.target.value)}>
+              {
+                taskStatus.map((item, index) => {
+                  return (
+                    <option key={'item' + index} value={item}>{item}</option>
+                  )
+                })
+              }
+            </select>
+          </li>
+        </ul>
         <>
           <ul className='boardList'>
             <li className='boardList-headerRow'>
@@ -94,7 +101,7 @@ export default function Mytask() {
                               return (
                                 <span
                                   key={`item-${index}-${idx}`}
-                                  style={key === 'status' ? { color: handleStatusColor(value as string) } : {}}
+                                  style={key === 'status' ? { color: taskStatusColor(value as string) } : {}}
                                 >
                                   {
                                     key === 'create_time' || key === 'deadline' ?

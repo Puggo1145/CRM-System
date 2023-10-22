@@ -23,6 +23,7 @@ export default function StudentData() {
     const [students, setStudents] = useState<studentDataType[]>([]);
 
     useEffect(() => {
+        
         (async () => {
             if (!location.search) return;
 
