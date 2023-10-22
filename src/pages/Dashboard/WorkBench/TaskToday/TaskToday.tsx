@@ -5,17 +5,10 @@ import './TaskToday.css'
 
 import BoardList from '../../../../components/BoardList/BoardList'
 
-interface taskTodayDataType {
-    employee: string;
-    taskObject: string;
-    TaskObjec_number: string;
-    status: string;
-}
-
 export default function TaskToday() {
 
     const [dataKeys, setDataKeys] = useState<string[]>(['对接员工', '任务目标', '目标数量', '状态']);
-    const [taskToday, setTaskToday] = useState<taskTodayDataType[]>([
+    const [taskToday, setTaskToday] = useState<Record<string, string | number>[]>([
         { employee: '员工A', taskObject: '学生A', TaskObjec_number: '学生A', status: '进行中' },
         { employee: '员工B', taskObject: '学生B', TaskObjec_number: '学生B', status: '进行中' },
         { employee: '员工C', taskObject: '学生C', TaskObjec_number: '学生C', status: '进行中' },

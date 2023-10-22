@@ -12,6 +12,15 @@ export default function Database() {
   const location = useLocation();
   const navigateTo = useNavigate();
 
+  // toSpliced 是新方法，ts 不识别
+  const [splicedPath, setSplicedPath] = useState<string[]>([]);
+  useEffect(() => {
+    const path = location.pathname.split('/');
+    path.splice(0, 3);
+
+    setSplicedPath(path);
+  }, [location.pathname]);
+
   const [isCreateDataOpened, setIsCreateDataOpened] = useState<boolean>(false);
 
   const [search, setSearch] = useState<string>('');
@@ -69,12 +78,12 @@ export default function Database() {
       <header>
         <Link to={"/dashboard/database"}>数据库</Link>
         {
-          location.pathname.split('/').toSpliced(0, 3).map((path, index) => {
+          splicedPath.map((path, index) => {
 
             return (
               <a
                 key={index}
-                onClick={() => history.go(index + 1 - location.pathname.split('/').toSpliced(0, 3).length)}
+                onClick={() => history.go(index + 1 - splicedPath.length)}
               >{'/' + decodeURIComponent(path)}</a>
             )
           })
